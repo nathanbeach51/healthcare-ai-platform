@@ -20,3 +20,6 @@ spark-warehouse/
 data/
 *.parquet
 *.delta
+
+# synthea test data
+tools/synthea/
