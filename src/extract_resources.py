@@ -1,0 +1,38 @@
+from ingestion.fhir_client import FhirClient
+from storage.bronze_writer import BronzeWriter
+
+FHIR_RESOURCES = [
+    "Patient",
+    "Encounter",
+    "Condition",
+    "Observation",
+    "MedicationRequest"
+]
+
+def extract_resources() -> None:
+    client = FhirClient()
+    writer = BronzeWriter()
+
+    for resource_type in FHIR_RESOURCES:
+        print(f"Extracting {resource_type}...")
+
+        entries = client.search_all(
+            resource_type,
+            params={"_count": 100},
+        )
+
+        bundle = {
+            "resourceType": "Bundle",
+            "type": "collection",
+            "entry": entries,
+        }
+
+        path = writer.write_bundle(resource_type, bundle)
+
+        print(
+            f"Retrieved {len(entries)} {resource_type} resources. "
+            f"Saved to {path}"
+        )
+
+if __name__ == "__main__":
+    extract_resources()

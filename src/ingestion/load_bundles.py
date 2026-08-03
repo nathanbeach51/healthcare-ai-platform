@@ -38,6 +38,9 @@ def main():
         if load_bundle(bundle):
             success += 1
             print(f"✓ {bundle.name}")
+            print(bundle.get("total"))
+            print(len(bundle.get("entry", [])))
+            print(bundle.get("link", []))
         else:
             print(f"✗ {bundle.name}")
 
