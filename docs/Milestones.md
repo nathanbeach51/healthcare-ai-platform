@@ -31,8 +31,12 @@ Established the simulated Electronic Health Record (EHR) that will serve as the 
 
 ---
 
-## Next Milestone
+## ✅ Milestone 3 - FHIR Extraction Pipeline (2026-08-03)
 
-- Generate synthetic patient data with Synthea
-- Load patients into HAPI FHIR
-- Verify Patient, Encounter, Observation, and Condition resources
+- Built reusable `FhirClient`
+- Added FHIR health check
+- Implemented resource search
+- Implemented pagination support
+- Added BronzeWriter for raw landing zone
+- Extracted Patient, Encounter, Condition, Observation, and MedicationRequest
+- Stored raw FHIR Bundles for downstream processing

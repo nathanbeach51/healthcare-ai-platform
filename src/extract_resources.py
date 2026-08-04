@@ -1,5 +1,5 @@
 from ingestion.fhir_client import FhirClient
-from data.bronze.bronze_writer import BronzeWriter
+from storage.bronze_writer import BronzeWriter
 
 FHIR_RESOURCES = [
     "Patient",
