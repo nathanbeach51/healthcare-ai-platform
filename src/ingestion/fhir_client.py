@@ -75,3 +75,4 @@ class FhirClient:
                 return link.get("url")
 
         return None
+

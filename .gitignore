@@ -16,8 +16,9 @@ __pycache__/
 # Spark
 spark-warehouse/
 
-# Data
-data/
+# Generated data
+/data/
+/storage/
 *.parquet
 *.delta
 
