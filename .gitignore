@@ -24,3 +24,9 @@ spark-warehouse/
 
 # synthea test data
 tools/synthea/
+
+# Generated Delta tables
+data/delta/bronze/*
+!data/delta/bronze/.gitkeep
+
+spark-warehouse/
