@@ -40,3 +40,13 @@ Established the simulated Electronic Health Record (EHR) that will serve as the 
 - Added BronzeWriter for raw landing zone
 - Extracted Patient, Encounter, Condition, Observation, and MedicationRequest
 - Stored raw FHIR Bundles for downstream processing
+
+## ✅ Milestone 4 - Bronze Delta (2026-08-04)
+
+- Installed PySpark and Delta Lake
+- Created reusable Spark session
+- Read Bronze FHIR bundles
+- Flattened Bundle entries into Patient resources
+- Added ingestion metadata
+- Persisted Patient resources as Delta tables
+- Verified Delta read/write operations
