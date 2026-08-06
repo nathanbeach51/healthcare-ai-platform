@@ -50,3 +50,11 @@ Established the simulated Electronic Health Record (EHR) that will serve as the 
 - Added ingestion metadata
 - Persisted Patient resources as Delta tables
 - Verified Delta read/write operations
+
+## ✅ Milestone 5 - Generic Bronze Processing (2026-08-04)
+
+- Refactored Patient processing into reusable functions
+- Added generic Bronze→Delta pipeline
+- Processed Patient, Encounter, Condition, Observation, and MedicationRequest
+- Added ingestion metadata
+- Verified Delta write/read for all resources
