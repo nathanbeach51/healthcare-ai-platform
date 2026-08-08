@@ -58,3 +58,18 @@ Established the simulated Electronic Health Record (EHR) that will serve as the 
 - Processed Patient, Encounter, Condition, Observation, and MedicationRequest
 - Added ingestion metadata
 - Verified Delta write/read for all resources
+
+## ✅ Milestone 6 - Generic Bronze Processing (2026-08-04)
+
+- Created Silver Layer for patients
+- Created Silver Layer for encounters
+
+## ✅ Milestone 7 - Patient Utilization Gold Table (2026-08-05)
+
+- Built Silver Encounter transformation
+- Flattened and deduplicated Encounter resources
+- Joined Silver Patient and Encounter data
+- Calculated encounter count per patient
+- Calculated first and latest encounter dates
+- Calculated average encounter duration
+- Wrote the first Gold Delta table
