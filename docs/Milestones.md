@@ -73,3 +73,18 @@ Established the simulated Electronic Health Record (EHR) that will serve as the 
 - Calculated first and latest encounter dates
 - Calculated average encounter duration
 - Wrote the first Gold Delta table
+
+## ✅ Milestone 8 - Patient/Encounter Gold Table (2026-08-05)
+
+- Created second Gold table, patient / Encounter relations
+
+## ✅ Milestone 9 - Observations / Vitals (2026-08-08)
+
+- Created Bronze Level Observation table
+- Created Silver Level Observation table
+- Created Gold level Observation table based on Patients
+
+## ✅ Milestone 10 - Patient Medications (2026-08-08)
+
+- Silver medication list
+- Gold medication list
