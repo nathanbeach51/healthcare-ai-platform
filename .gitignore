@@ -17,7 +17,13 @@ __pycache__/
 spark-warehouse/
 
 # Generated data
-/data/
+# Ignore generated/local data
+data/*
+
+# Keep reference data in source control
+!data/reference/
+!data/reference/**
+
 /storage/
 *.parquet
 *.delta

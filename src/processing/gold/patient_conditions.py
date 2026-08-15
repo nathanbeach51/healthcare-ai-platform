@@ -20,6 +20,25 @@ PATIENT_CONDITIONS_GOLD_PATH = (
     PROJECT_ROOT / "data" / "delta" / "gold" / "patient_conditions"
 )
 
+CONDITION_CLASSIFICATION_PATH = (
+    PROJECT_ROOT
+    / "data"
+    / "reference"
+    / "condition_classification.csv"
+)
+
+def read_condition_classification(
+    spark: SparkSession,
+) -> DataFrame:
+    return (
+        spark.read
+        .option("header", True)
+        .schema(
+            "condition_code string, condition_group string"
+        )
+        .csv(str(CONDITION_CLASSIFICATION_PATH))
+    )
+
 
 def read_silver_patients(
     spark: SparkSession,
@@ -40,6 +59,16 @@ def read_silver_conditions(
         .load(str(CONDITION_SILVER_PATH))
     )
 
+def classify_conditions(
+    conditions: DataFrame,
+    classification: DataFrame,
+) -> DataFrame:
+    return conditions.join(
+        classification,
+        on="condition_code",
+        how="left",
+    )
+
 
 def summarize_conditions(
     conditions: DataFrame,
@@ -48,26 +77,71 @@ def summarize_conditions(
         conditions
         .groupBy("patient_id")
         .agg(
-            F.count("*").alias("condition_count"),
+            F.count("*")
+                .alias("condition_count"),
 
             F.sum(
                 F.when(
-                    F.col("is_active"),
+                    (F.col("condition_group") == "clinical")
+                    & F.col("is_active"),
                     1,
                 ).otherwise(0)
-            ).alias("active_condition_count"),
-
-            F.min("onset_at").alias(
-                "first_condition_onset_at"
-            ),
-
-            F.max("onset_at").alias(
-                "latest_condition_onset_at"
-            ),
+            ).alias("active_clinical_condition_count"),
 
             F.collect_set(
-                "condition_display"
-            ).alias("condition_names"),
+                F.when(
+                    F.col("condition_group") == "clinical",
+                    F.col("condition_display"),
+                )
+            ).alias("clinical_condition_names"),
+
+            F.sum(
+                F.when(
+                    F.col("condition_group") == "social",
+                    1,
+                ).otherwise(0)
+            ).alias("social_factor_count"),
+
+            F.collect_set(
+                F.when(
+                    F.col("condition_group") == "social",
+                    F.col("condition_display"),
+                )
+            ).alias("social_factor_names"),
+
+            F.sum(
+                F.when(
+                    F.col("condition_group") == "history",
+                    1,
+                ).otherwise(0)
+            ).alias("history_count"),
+
+            F.collect_set(
+                F.when(
+                    F.col("condition_group") == "history",
+                    F.col("condition_display"),
+                )
+            ).alias("history_names"),
+
+            F.sum(
+                F.when(
+                    F.col("condition_group") == "behavioral",
+                    1,
+                ).otherwise(0)
+            ).alias("behavioral_factor_count"),
+
+            F.collect_set(
+                F.when(
+                    F.col("condition_group") == "behavioral",
+                    F.col("condition_display"),
+                )
+            ).alias("behavioral_factor_names"),
+
+            F.min("onset_at")
+                .alias("first_condition_onset_at"),
+
+            F.max("onset_at")
+                .alias("latest_condition_onset_at"),
         )
     )
 
@@ -86,12 +160,15 @@ def build_patient_conditions(
         .fillna(
             {
                 "condition_count": 0,
-                "active_condition_count": 0,
+                "active_clinical_condition_count": 0,
+                "social_factor_count": 0,
+                "history_count": 0,
+                "behavioral_factor_count": 0,
             }
         )
         .withColumn(
-            "has_active_condition",
-            F.col("active_condition_count") > 0,
+            "has_active_clinical_condition",
+            F.col("active_clinical_condition_count") > 0,
         )
         .withColumn(
             "gold_processed_at",
@@ -137,6 +214,7 @@ def write_patient_conditions(
         patient_conditions.write
         .format("delta")
         .mode("overwrite")
+        .option("overwriteSchema", "true")
         .save(str(PATIENT_CONDITIONS_GOLD_PATH))
     )
 
@@ -150,8 +228,15 @@ def main() -> None:
         patients = read_silver_patients(spark)
         conditions = read_silver_conditions(spark)
 
+        classification = read_condition_classification(spark)
+
+        classified_conditions = classify_conditions(
+        conditions,
+        classification,
+)
+
         condition_summary = summarize_conditions(
-            conditions
+            classified_conditions
         )
 
         patient_conditions = build_patient_conditions(
@@ -168,12 +253,23 @@ def main() -> None:
             "birth_date",
             "gender",
             "condition_count",
-            "active_condition_count",
-            "has_active_condition",
+
+            "active_clinical_condition_count",
+            "has_active_clinical_condition",
+            "clinical_condition_names",
+
+            "social_factor_count",
+            "social_factor_names",
+
+            "history_count",
+            "history_names",
+
+            "behavioral_factor_count",
+            "behavioral_factor_names",
+
             "first_condition_onset_at",
             "latest_condition_onset_at",
-            "condition_names",
-        ).show(truncate=False)
+).show(truncate=False)
 
         print(
             f"Patient condition rows: "
@@ -188,6 +284,17 @@ def main() -> None:
             spark.read
             .format("delta")
             .load(str(PATIENT_CONDITIONS_GOLD_PATH))
+        )
+
+        unclassified_count = (
+            classified_conditions
+            .filter(F.col("condition_group").isNull())
+            .count()
+        )
+
+        print(
+            f"Unclassified condition rows: "
+            f"{unclassified_count}"
         )
 
         print(

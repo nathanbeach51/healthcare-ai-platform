@@ -88,3 +88,9 @@ Established the simulated Electronic Health Record (EHR) that will serve as the 
 
 - Silver medication list
 - Gold medication list
+
+## ✅ Milestone 11 - Patient Medications (2026-08-14)
+
+- Streamlit app 
+    - with Population Analytics
+    - with Patient Explorer 
