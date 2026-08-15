@@ -89,8 +89,15 @@ Established the simulated Electronic Health Record (EHR) that will serve as the 
 - Silver medication list
 - Gold medication list
 
-## ✅ Milestone 11 - Patient Medications (2026-08-14)
+## ✅ Milestone 11 - Streamlit Map (2026-08-14)
 
 - Streamlit app 
     - with Population Analytics
     - with Patient Explorer 
+
+## ✅ Milestone 12 - Patient Trends (2026-08-14)
+
+- Added to streamlit app
+    - Weight Trends
+    - BMI Trends
+    - BP Trends 

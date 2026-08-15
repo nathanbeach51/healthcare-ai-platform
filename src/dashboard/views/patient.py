@@ -1,5 +1,13 @@
 import streamlit as st
 
+from dashboard.data_loader import load_patient_observations
+
+
+WEIGHT_CODE = "29463-7"
+BMI_CODE = "39156-5"
+SYSTOLIC_CODE = "8480-6"
+DIASTOLIC_CODE = "8462-4"
+
 
 def show_patient_explorer(
     patient_utilization,
@@ -14,30 +22,28 @@ def show_patient_explorer(
     selected_patient = st.selectbox(
         "Select Patient",
         sorted(
-            patient_utilization[
-                "patient_id"
-            ].unique()
+            patient_utilization["patient_id"].unique()
         ),
     )
 
+    # --------------------------------------------------
+    # Filter Gold tables to selected patient
+    # --------------------------------------------------
+
     utilization_row = patient_utilization[
-        patient_utilization["patient_id"]
-        == selected_patient
+        patient_utilization["patient_id"] == selected_patient
     ]
 
     conditions_row = patient_conditions[
-        patient_conditions["patient_id"]
-        == selected_patient
+        patient_conditions["patient_id"] == selected_patient
     ]
 
     vitals_row = patient_vitals[
-        patient_vitals["patient_id"]
-        == selected_patient
+        patient_vitals["patient_id"] == selected_patient
     ]
 
     medications_row = patient_medications[
-        patient_medications["patient_id"]
-        == selected_patient
+        patient_medications["patient_id"] == selected_patient
     ]
 
     utilization = utilization_row.iloc[0]
@@ -45,7 +51,10 @@ def show_patient_explorer(
     vitals = vitals_row.iloc[0]
     medications = medications_row.iloc[0]
 
+    # --------------------------------------------------
     # Patient Overview
+    # --------------------------------------------------
+
     st.subheader("Patient Overview")
 
     col1, col2, col3, col4 = st.columns(4)
@@ -90,7 +99,10 @@ def show_patient_explorer(
         ),
     )
 
+    # --------------------------------------------------
     # Latest Vitals
+    # --------------------------------------------------
+
     st.subheader("Latest Vitals")
 
     col1, col2, col3, col4 = st.columns(4)
@@ -145,7 +157,107 @@ def show_patient_explorer(
         ),
     )
 
+    # --------------------------------------------------
+    # Weight Trend
+    # --------------------------------------------------
+
+    st.subheader("Weight Trend")
+
+    weight_history = load_patient_observations(
+        selected_patient,
+        (WEIGHT_CODE,),
+    )
+
+    if not weight_history.empty:
+        weight_chart = (
+            weight_history[
+                [
+                    "observation_at",
+                    "value_numeric",
+                ]
+            ]
+            .set_index("observation_at")
+            .rename(
+                columns={
+                    "value_numeric": "Weight (kg)",
+                }
+            )
+        )
+
+        st.line_chart(weight_chart)
+    else:
+        st.write("No weight history found.")
+
+    # --------------------------------------------------
+    # BMI Trend
+    # --------------------------------------------------
+
+    st.subheader("BMI Trend")
+
+    bmi_history = load_patient_observations(
+        selected_patient,
+        (BMI_CODE,),
+    )
+
+    if not bmi_history.empty:
+        bmi_chart = (
+            bmi_history[
+                [
+                    "observation_at",
+                    "value_numeric",
+                ]
+            ]
+            .set_index("observation_at")
+            .rename(
+                columns={
+                    "value_numeric": "BMI",
+                }
+            )
+        )
+
+        st.line_chart(bmi_chart)
+    else:
+        st.write("No BMI history found.")
+
+    # --------------------------------------------------
+    # Blood Pressure Trend
+    # --------------------------------------------------
+
+    st.subheader("Blood Pressure Trend")
+
+    bp_history = load_patient_observations(
+        selected_patient,
+        (
+            SYSTOLIC_CODE,
+            DIASTOLIC_CODE,
+        ),
+    )
+
+    if not bp_history.empty:
+        bp_chart = (
+            bp_history
+            .pivot(
+                index="observation_at",
+                columns="observation_code",
+                values="value_numeric",
+            )
+            .rename(
+                columns={
+                    SYSTOLIC_CODE: "Systolic",
+                    DIASTOLIC_CODE: "Diastolic",
+                }
+            )
+            .sort_index()
+        )
+
+        st.line_chart(bp_chart)
+    else:
+        st.write("No blood pressure history found.")
+
+    # --------------------------------------------------
     # Clinical Conditions
+    # --------------------------------------------------
+
     st.subheader("Clinical Conditions")
 
     clinical_names = conditions[
@@ -158,7 +270,10 @@ def show_patient_explorer(
     else:
         st.write("No clinical conditions found.")
 
+    # --------------------------------------------------
     # Social Factors
+    # --------------------------------------------------
+
     st.subheader("Social Factors")
 
     social_names = conditions[
@@ -171,7 +286,10 @@ def show_patient_explorer(
     else:
         st.write("No social factors found.")
 
+    # --------------------------------------------------
     # History
+    # --------------------------------------------------
+
     st.subheader("History")
 
     history_names = conditions[
@@ -184,7 +302,10 @@ def show_patient_explorer(
     else:
         st.write("No history items found.")
 
+    # --------------------------------------------------
     # Behavioral Factors
+    # --------------------------------------------------
+
     behavioral_names = conditions[
         "behavioral_factor_names"
     ]
@@ -195,7 +316,10 @@ def show_patient_explorer(
         for item in behavioral_names:
             st.write(f"• {item}")
 
-    # Medications
+    # --------------------------------------------------
+    # Active Medications
+    # --------------------------------------------------
+
     st.subheader("Active Medications")
 
     col1, col2, col3 = st.columns(3)
