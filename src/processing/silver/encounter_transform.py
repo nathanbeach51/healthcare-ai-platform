@@ -6,6 +6,12 @@ from pyspark.sql.window import Window
 
 from processing.spark_session import create_spark_session
 
+from delta.tables import DeltaTable
+
+from processing.delta_utils import get_last_ingested_at, merge_delta
+
+from config.settings import DEBUG_LOGGING
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
@@ -19,12 +25,20 @@ ENCOUNTER_SILVER_DELTA_PATH = (
 
 def read_bronze_encounters(
     spark: SparkSession,
+    last_ingested_at=None,
 ) -> DataFrame:
-    return (
+    bronze = (
         spark.read
         .format("delta")
         .load(str(ENCOUNTER_BRONZE_DELTA_PATH))
     )
+
+    if last_ingested_at is not None:
+        bronze = bronze.filter(
+            F.col("_ingested_at") > last_ingested_at
+        )
+
+    return bronze
 
 def transform_encounters(
     bronze: DataFrame,
@@ -106,46 +120,100 @@ def add_encounter_fields(
         )
     )
 
+
 def write_silver_encounters(
+    spark: SparkSession,
     encounters: DataFrame,
 ) -> None:
-    (
-        encounters.write
-        .format("delta")
-        .mode("overwrite")
-        .save(str(ENCOUNTER_SILVER_DELTA_PATH))
+    merge_delta(
+        spark=spark,
+        source=encounters,
+        target_path=ENCOUNTER_SILVER_DELTA_PATH,
+        merge_condition=(
+            "target.encounter_id = source.encounter_id"
+        ),
     )
-
 
 def main() -> None:
     spark = create_spark_session("encounter-silver")
 
     try:
-        bronze = read_bronze_encounters(spark)
+        last_ingested_at = get_last_ingested_at(
+            spark,
+            ENCOUNTER_SILVER_DELTA_PATH,
+        )
 
-        print(f"Bronze encounter snapshots: {bronze.count()}")
+        bronze = read_bronze_encounters(
+            spark,
+            last_ingested_at,
+        )
 
-        transformed = transform_encounters(bronze)
+        bronze_count = bronze.count()
 
-        transformed.show(5, truncate=False)
+        print("\nEncounter Silver")
+        print("----------------")
+        print(f"New Bronze rows: {bronze_count}")
 
-        current_encounters = deduplicate_encounters(transformed)
+        if bronze_count == 0:
+            print("Rows to merge: 0")
+            print("Status: NO NEW DATA")
+            return
 
-        silver = add_encounter_fields(current_encounters)
+        transformed = transform_encounters(
+            bronze
+        )
 
-        print(f"Silver unique encounters: {silver.count()}")
+        if DEBUG_LOGGING:
+            print("\nTransformed Encounter sample:")
+            transformed.show(
+                5,
+                truncate=False,
+            )
 
-        silver.show(5, truncate=False)
+        current_encounters = (
+            deduplicate_encounters(
+                transformed
+            )
+        )
 
-        write_silver_encounters(silver)
+        silver = add_encounter_fields(
+            current_encounters
+        )
+
+        silver_count = silver.count()
+
+        print(
+            f"Rows to merge: {silver_count}"
+        )
+
+        if DEBUG_LOGGING:
+            print("\nSilver Encounter sample:")
+            silver.show(
+                5,
+                truncate=False,
+            )
+
+        write_silver_encounters(
+            spark,
+            silver,
+        )
 
         saved = (
             spark.read
             .format("delta")
-            .load(str(ENCOUNTER_SILVER_DELTA_PATH))
+            .load(
+                str(
+                    ENCOUNTER_SILVER_DELTA_PATH
+                )
+            )
         )
 
-        print(f"Saved Silver encounter rows: {saved.count()}")
+        saved_count = saved.count()
+
+        print(
+            f"Total Silver rows: {saved_count}"
+        )
+        print("Status: SUCCESS")
 
     finally:
         spark.stop()

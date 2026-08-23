@@ -6,6 +6,10 @@ from pyspark.sql.window import Window
 
 from processing.spark_session import create_spark_session
 
+from processing.delta_utils import get_last_ingested_at, merge_delta
+
+from config.settings import DEBUG_LOGGING
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
@@ -18,13 +22,22 @@ PATIENT_SILVER_DELTA_PATH = (
 )
 
 
-def read_bronze_patients(spark: SparkSession) -> DataFrame:
-    return (
+def read_bronze_patients(
+    spark: SparkSession,
+    last_ingested_at=None,
+) -> DataFrame:
+    bronze = (
         spark.read
         .format("delta")
         .load(str(PATIENT_BRONZE_DELTA_PATH))
     )
 
+    if last_ingested_at is not None:
+        bronze = bronze.filter(
+            F.col("_ingested_at") > last_ingested_at
+        )
+
+    return bronze
 
 def transform_patients(bronze: DataFrame) -> DataFrame:
     return bronze.select(
@@ -99,12 +112,17 @@ def validate_patients(patients: DataFrame) -> None:
         )
 
 
-def write_silver_patients(patients: DataFrame) -> None:
-    (
-        patients.write
-        .format("delta")
-        .mode("overwrite")
-        .save(str(PATIENT_SILVER_DELTA_PATH))
+def write_silver_patients(
+    spark: SparkSession,
+    patients: DataFrame,
+) -> None:
+    merge_delta(
+        spark=spark,
+        source=patients,
+        target_path=PATIENT_SILVER_DELTA_PATH,
+        merge_condition=(
+            "target.patient_id = source.patient_id"
+        ),
     )
 
 
@@ -112,31 +130,77 @@ def main() -> None:
     spark = create_spark_session("patient-silver")
 
     try:
-        bronze = read_bronze_patients(spark)
+        last_ingested_at = get_last_ingested_at(
+            spark,
+            PATIENT_SILVER_DELTA_PATH,
+        )
 
-        print(f"Bronze rows: {bronze.count()}")
+        bronze = read_bronze_patients(
+            spark,
+            last_ingested_at,
+        )
 
-        flattened = transform_patients(bronze)
+        bronze_count = bronze.count()
 
-        current_patients = deduplicate_patients(flattened)
+        print("\nPatient Silver")
+        print("--------------")
+        print(f"New Bronze rows: {bronze_count}")
 
-        silver = add_silver_metadata(current_patients)
+        if bronze_count == 0:
+            print("Rows to merge: 0")
+            print("Status: NO NEW DATA")
+            return
 
-        validate_patients(silver)
+        flattened = transform_patients(
+            bronze
+        )
 
-        print(f"Silver rows: {silver.count()}")
+        current_patients = deduplicate_patients(
+            flattened
+        )
 
-        silver.show(truncate=False)
+        silver = add_silver_metadata(
+            current_patients
+        )
 
-        write_silver_patients(silver)
+        validate_patients(
+            silver
+        )
+
+        silver_count = silver.count()
+
+        print(
+            f"Rows to merge: {silver_count}"
+        )
+
+        if DEBUG_LOGGING:
+            print("\nSilver Patient sample:")
+            silver.show(
+                10,
+                truncate=False,
+            )
+
+        write_silver_patients(
+            spark,
+            silver,
+        )
 
         saved = (
             spark.read
             .format("delta")
-            .load(str(PATIENT_SILVER_DELTA_PATH))
+            .load(
+                str(
+                    PATIENT_SILVER_DELTA_PATH
+                )
+            )
         )
 
-        print(f"Saved Silver rows: {saved.count()}")
+        saved_count = saved.count()
+
+        print(
+            f"Total Silver rows: {saved_count}"
+        )
+        print("Status: SUCCESS")
 
     finally:
         spark.stop()

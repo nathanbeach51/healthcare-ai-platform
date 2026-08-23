@@ -2,8 +2,14 @@ from pathlib import Path
 
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
-from processing.spark_session import create_spark_session
 from pyspark.sql.window import Window
+
+from config.settings import DEBUG_LOGGING
+from processing.delta_utils import (
+    get_last_ingested_at,
+    merge_delta,
+)
+from processing.spark_session import create_spark_session
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
@@ -23,12 +29,21 @@ MEDICATION_SILVER_DELTA_PATH = (
 
 def read_bronze_medication_requests(
     spark: SparkSession,
+    last_ingested_at=None,
 ) -> DataFrame:
-    return (
+    bronze = (
         spark.read
         .format("delta")
         .load(str(MEDICATION_BRONZE_DELTA_PATH))
     )
+
+    if last_ingested_at is not None:
+        bronze = bronze.filter(
+            F.col("_ingested_at") > last_ingested_at
+        )
+
+    return bronze
+
 
 def deduplicate_medication_requests(
     medications: DataFrame,
@@ -76,6 +91,7 @@ def normalize_medication_fields(
             ),
         )
     )
+
 
 def add_silver_metadata(
     medications: DataFrame,
@@ -129,13 +145,16 @@ def validate_medication_requests(
 
 
 def write_silver_medication_requests(
-    medications: DataFrame,
+    spark: SparkSession,
+    medication_requests: DataFrame,
 ) -> None:
-    (
-        medications.write
-        .format("delta")
-        .mode("overwrite")
-        .save(str(MEDICATION_SILVER_DELTA_PATH))
+    merge_delta(
+        spark=spark,
+        source=medication_requests,
+        target_path=MEDICATION_SILVER_DELTA_PATH,
+        merge_condition=(
+             "target.medication_request_id = source.medication_request_id"
+        ),
     )
 
 def transform_medication_requests(
@@ -201,9 +220,26 @@ def main() -> None:
     )
 
     try:
-        bronze = read_bronze_medication_requests(
-            spark
+        last_ingested_at = get_last_ingested_at(
+            spark,
+            MEDICATION_SILVER_DELTA_PATH,
         )
+
+        bronze = read_bronze_medication_requests(
+            spark,
+            last_ingested_at,
+        )
+
+        bronze_count = bronze.count()
+
+        print("\nMedicationRequest Silver")
+        print("------------------------")
+        print(f"New Bronze rows: {bronze_count}")
+
+        if bronze_count == 0:
+            print("Rows to merge: 0")
+            print("Status: NO NEW DATA")
+            return
 
         transformed = transform_medication_requests(
             bronze
@@ -225,33 +261,40 @@ def main() -> None:
             silver
         )
 
-        print(
-            f"Bronze medication snapshots: "
-            f"{bronze.count()}"
-        )
+        silver_count = silver.count()
 
         print(
-            f"Silver medication requests: "
-            f"{silver.count()}"
+            f"Rows to merge: {silver_count}"
         )
 
-        silver.select(
-            "medication_request_id",
-            "patient_id",
-            "encounter_id",
-            "medication_code",
-            "medication_display",
-            "medication_reference_id",
-            "status",
-            "intent",
-            "authored_at",
-            "requester_id",
-            "requester_display",
-        ).show(30, truncate=False)
+        if DEBUG_LOGGING:
+            print("\nSilver MedicationRequest sample:")
+            silver.show(
+                10,
+                truncate=False,
+            )
 
         write_silver_medication_requests(
-            silver
+            spark,
+            silver,
         )
+
+        saved = (
+            spark.read
+            .format("delta")
+            .load(
+                str(
+                    MEDICATION_SILVER_DELTA_PATH
+                )
+            )
+        )
+
+        saved_count = saved.count()
+
+        print(
+            f"Total Silver rows: {saved_count}"
+        )
+        print("Status: SUCCESS")
 
     finally:
         spark.stop()

@@ -4,8 +4,13 @@ from pathlib import Path
 from typing import Any, Dict, List, Union
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
-DEFAULT_BRONZE_PATH = PROJECT_ROOT / "storage" / "bronze"
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+DEFAULT_BRONZE_PATH = (
+    PROJECT_ROOT
+    / "data"
+    / "bronze"
+)
 
 
 class BronzeWriter:

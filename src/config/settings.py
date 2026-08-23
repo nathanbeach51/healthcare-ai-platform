@@ -4,3 +4,5 @@ DEFAULT_HEADERS = {
     "Accept": "application/fhir+json",
     "Content-Type": "application/fhir+json"
 }
+
+DEBUG_LOGGING = False

@@ -6,6 +6,10 @@ from pyspark.sql.window import Window
 
 from processing.spark_session import create_spark_session
 
+from processing.delta_utils import get_last_ingested_at, merge_delta
+
+from config.settings import DEBUG_LOGGING
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
@@ -17,15 +21,22 @@ CONDITION_SILVER_DELTA_PATH = (
     PROJECT_ROOT / "data" / "delta" / "silver" / "condition"
 )
 
-
 def read_bronze_conditions(
     spark: SparkSession,
+    last_ingested_at=None,
 ) -> DataFrame:
-    return (
+    bronze = (
         spark.read
         .format("delta")
         .load(str(CONDITION_BRONZE_DELTA_PATH))
     )
+
+    if last_ingested_at is not None:
+        bronze = bronze.filter(
+            F.col("_ingested_at") > last_ingested_at
+        )
+
+    return bronze
 
 
 def transform_conditions(
@@ -145,45 +156,94 @@ def validate_conditions(
             f"Found {null_patient_id_count} null patient IDs."
         )
 
-
 def write_silver_conditions(
+    spark: SparkSession,
     conditions: DataFrame,
 ) -> None:
-    (
-        conditions.write
-        .format("delta")
-        .mode("overwrite")
-        .save(str(CONDITION_SILVER_DELTA_PATH))
+    merge_delta(
+        spark=spark,
+        source=conditions,
+        target_path=CONDITION_SILVER_DELTA_PATH,
+        merge_condition=(
+            "target.condition_id = source.condition_id"
+        ),
     )
-
 
 def main() -> None:
     spark = create_spark_session("condition-silver")
 
     try:
-        bronze = read_bronze_conditions(spark)
+        last_ingested_at = get_last_ingested_at(
+            spark,
+            CONDITION_SILVER_DELTA_PATH,
+        )
 
-        print(f"Bronze condition snapshots: {bronze.count()}")
+        bronze = read_bronze_conditions(
+            spark,
+            last_ingested_at,
+        )
 
-        transformed = transform_conditions(bronze)
-        current = deduplicate_conditions(transformed)
-        silver = add_condition_fields(current)
+        bronze_count = bronze.count()
 
-        validate_conditions(silver)
+        print("\nCondition Silver")
+        print("----------------")
+        print(f"New Bronze rows: {bronze_count}")
 
-        print(f"Silver unique conditions: {silver.count()}")
+        if bronze_count == 0:
+            print("Rows to merge: 0")
+            print("Status: NO NEW DATA")
+            return
 
-        silver.show(10, truncate=False)
+        transformed = transform_conditions(
+            bronze
+        )
 
-        write_silver_conditions(silver)
+        current = deduplicate_conditions(
+            transformed
+        )
+
+        silver = add_condition_fields(
+            current
+        )
+
+        validate_conditions(
+            silver
+        )
+
+        silver_count = silver.count()
+
+        print(
+            f"Rows to merge: {silver_count}"
+        )
+
+        if DEBUG_LOGGING:
+            print("\nSilver Condition sample:")
+            silver.show(
+                10,
+                truncate=False,
+            )
+
+        write_silver_conditions(
+            spark,
+            silver,
+        )
 
         saved = (
             spark.read
             .format("delta")
-            .load(str(CONDITION_SILVER_DELTA_PATH))
+            .load(
+                str(
+                    CONDITION_SILVER_DELTA_PATH
+                )
+            )
         )
 
-        print(f"Saved Silver condition rows: {saved.count()}")
+        saved_count = saved.count()
+
+        print(
+            f"Total Silver rows: {saved_count}"
+        )
+        print("Status: SUCCESS")
 
     finally:
         spark.stop()

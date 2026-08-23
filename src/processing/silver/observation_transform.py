@@ -1,12 +1,13 @@
 from pathlib import Path
-
 from pyspark.sql import DataFrame, SparkSession
+from pyspark.sql import functions as F
+from pyspark.sql.window import Window
 
 from processing.spark_session import create_spark_session
 
+from processing.delta_utils import get_last_ingested_at, merge_delta
 
-from pyspark.sql import functions as F
-from pyspark.sql.window import Window
+from config.settings import DEBUG_LOGGING
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
@@ -19,24 +20,37 @@ OBSERVATION_SILVER_DELTA_PATH = (
     PROJECT_ROOT / "data" / "delta" / "silver" / "observation"
 )
 
-def write_silver_observations(
-    observations: DataFrame,
-) -> None:
-    (
-        observations.write
-        .format("delta")
-        .mode("overwrite")
-        .save(str(OBSERVATION_SILVER_DELTA_PATH))
-    )
-
 def read_bronze_observations(
     spark: SparkSession,
+    last_ingested_at=None,
 ) -> DataFrame:
-    return (
+    bronze = (
         spark.read
         .format("delta")
         .load(str(OBSERVATION_BRONZE_DELTA_PATH))
     )
+
+    if last_ingested_at is not None:
+        bronze = bronze.filter(
+            F.col("_ingested_at") > last_ingested_at
+        )
+
+    return bronze
+
+def write_silver_observations(
+    spark: SparkSession,
+    observations: DataFrame,
+) -> None:
+    merge_delta(
+        spark=spark,
+        source=observations,
+        target_path=OBSERVATION_SILVER_DELTA_PATH,
+        merge_condition=(
+            "target.observation_id = source.observation_id "
+            "AND target.observation_code = source.observation_code"
+        ),
+    )
+
 
 def deduplicate_observations(
     observations: DataFrame,
@@ -236,12 +250,35 @@ def combine_observations(
 
 
 def main() -> None:
-    spark = create_spark_session("observation-silver")
+    spark = create_spark_session(
+        "observation-silver"
+    )
 
     try:
-        bronze = read_bronze_observations(spark)
+        last_ingested_at = get_last_ingested_at(
+            spark,
+            OBSERVATION_SILVER_DELTA_PATH,
+        )
 
-        simple = transform_simple_observations(bronze)
+        bronze = read_bronze_observations(
+            spark,
+            last_ingested_at,
+        )
+
+        bronze_count = bronze.count()
+
+        print("\nObservation Silver")
+        print("------------------")
+        print(f"New Bronze rows: {bronze_count}")
+
+        if bronze_count == 0:
+            print("Rows to merge: 0")
+            print("Status: NO NEW DATA")
+            return
+
+        simple = transform_simple_observations(
+            bronze
+        )
 
         components = transform_component_observations(
             bronze
@@ -264,30 +301,40 @@ def main() -> None:
             silver
         )
 
-        print(
-            f"Bronze Observation snapshots: "
-            f"{bronze.count()}"
-        )
+        silver_count = silver.count()
 
         print(
-            f"Silver measurements: "
-            f"{silver.count()}"
+            f"Rows to merge: {silver_count}"
         )
 
-        silver.select(
-            "observation_id",
-            "patient_id",
-            "encounter_id",
-            "observation_code",
-            "observation_display",
-            "observation_at",
-            "value_numeric",
-            "unit",
-        ).show(50, truncate=False)
+        if DEBUG_LOGGING:
+            print("\nSilver Observation sample:")
+            silver.show(
+                10,
+                truncate=False,
+            )
 
         write_silver_observations(
-            silver
+            spark,
+            silver,
         )
+
+        saved = (
+            spark.read
+            .format("delta")
+            .load(
+                str(
+                    OBSERVATION_SILVER_DELTA_PATH
+                )
+            )
+        )
+
+        saved_count = saved.count()
+
+        print(
+            f"Total Silver rows: {saved_count}"
+        )
+        print("Status: SUCCESS")
 
     finally:
         spark.stop()

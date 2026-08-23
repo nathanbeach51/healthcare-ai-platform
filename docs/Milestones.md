@@ -101,3 +101,75 @@ Established the simulated Electronic Health Record (EHR) that will serve as the 
     - Weight Trends
     - BMI Trends
     - BP Trends 
+
+## Milestone 13 — Incremental Pipeline Processing & Hardening
+
+### Incremental FHIR Extraction
+- Add checkpoint-based incremental extraction from HAPI FHIR
+- Track the last successful extraction timestamp by resource type
+- Use FHIR `_lastUpdated` to retrieve only new or updated resources
+- Validate incremental extraction across Patient, Encounter, Condition,
+      Observation, and MedicationRequest
+
+### Incremental Bronze Processing
+- Process only new Bronze JSON files into Bronze Delta
+- Track previously processed source files using `_source_file`
+- Append new FHIR resources to existing Bronze Delta tables
+- Support FHIR schema evolution when new resource fields appear
+
+### Incremental Silver Processing
+- Process only newly ingested Bronze records
+- Add reusable Delta incremental-processing utilities
+- Deduplicate resources using FHIR resource IDs and source timestamps
+- Merge Patient updates into Silver Delta
+- Merge Encounter updates into Silver Delta
+- Merge Condition updates into Silver Delta
+- Merge Observation updates into Silver Delta
+- Merge MedicationRequest updates into Silver Delta
+- Preserve latest resource versions during incremental processing
+
+### Pipeline Validation
+- Add validation for duplicate resource IDs
+- Add validation for required patient/resource identifiers
+- Verify incremental Patient processing
+- Verify incremental Encounter processing
+- Verify incremental Condition processing
+- Verify incremental Observation processing
+- Verify incremental MedicationRequest processing
+- Verify Gold tables update correctly after incremental Silver processing
+- Verify Streamlit dashboard displays newly loaded patients
+
+### Condition Classification
+- Review previously unclassified Synthea conditions
+- Expand condition classification rules
+- Separate clinical conditions, social factors, history, and behavioral factors
+- Add reporting for remaining unclassified conditions
+
+### Logging & Debugging
+- Add configurable debug logging
+- Standardize Silver pipeline logging
+- Move verbose Spark `.show()` output behind debug logging
+- Add concise row-count and success messages for Silver transforms
+
+### HAPI FHIR Persistence
+- Replace HAPI's temporary in-memory database with PostgreSQL
+- Add PostgreSQL service to Docker Compose
+- Add persistent Docker volume for PostgreSQL data
+- Verify FHIR data survives container shutdown and restart
+
+### Synthea Loading
+- Load hospital bundles before patient bundles
+- Load practitioner/provider bundles before patient bundles
+- Add configurable patient bundle limit
+- Improve bundle loader logging
+- Validate dependency-aware Synthea loading
+
+### End-to-End Validation
+- Generate/load a new batch of Synthea patients
+- Extract incremental FHIR resources
+- Process incremental Bronze data
+- Process incremental Silver data
+- Rebuild/update Gold analytics
+- Validate new patients in the Streamlit dashboard
+- Verify a second run does not unnecessarily reprocess data
+- Verify HAPI patient data persists across Docker restarts

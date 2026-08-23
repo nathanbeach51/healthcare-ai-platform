@@ -4,11 +4,9 @@ set -e
 
 echo "Generating synthetic hospital..."
 
-mkdir -p tools/synthea/output
+cd tools/synthea/source
 
-docker run --rm \
-  -v "$(pwd)/tools/synthea/output:/output" \
-  synthetichealth/synthea \
+./run_synthea \
   -p 100
 
-echo "Done!"
+echo "Synthea generation complete."
