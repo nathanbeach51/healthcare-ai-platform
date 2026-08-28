@@ -174,7 +174,26 @@ Established the simulated Electronic Health Record (EHR) that will serve as the 
 - Verify a second run does not unnecessarily reprocess data
 - Verify HAPI patient data persists across Docker restarts
 
-## Milestone 14 — Airflow Orchestration
- - Airflow + Docker set up and config to run Airflow locally
- - DAG which would load Bronze, Bronze Delta, Silver Delta, and Gold Delta
- - DAG processes the pipelines in order and uses the previous level for dependency management
+## Milestone 14 — Airflow Orchestration ✅
+
+- Added Apache Airflow 3.3.1 to the Docker environment
+- Added persistent PostgreSQL Airflow metadata database
+- Created healthcare pipeline DAG
+- Orchestrated FHIR extraction and Bronze Delta processing
+- Added parallel Silver transformations
+  - Patient
+  - Encounter
+  - Condition
+  - Observation
+  - MedicationRequest
+- Added Silver completion/validation checkpoint
+- Added parallel Gold transformations
+  - Patient conditions
+  - Latest patient vitals
+  - Patient medications
+  - Patient utilization
+- Added extraction retries
+- Configured Docker networking between Airflow and HAPI FHIR
+- Configured Spark/Delta execution inside Airflow
+- Verified task-level logging
+- Successfully tested complete FHIR → Bronze → Silver → Gold pipeline
