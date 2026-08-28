@@ -10,7 +10,7 @@ FHIR_DIRECTORY = Path(
     "tools/synthea/source/output/fhir"
 )
 
-PATIENT_LIMIT = 20
+PATIENT_LIMIT = 25
 
 
 def load_bundle(

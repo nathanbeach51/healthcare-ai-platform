@@ -173,3 +173,8 @@ Established the simulated Electronic Health Record (EHR) that will serve as the 
 - Validate new patients in the Streamlit dashboard
 - Verify a second run does not unnecessarily reprocess data
 - Verify HAPI patient data persists across Docker restarts
+
+## Milestone 14 — Airflow Orchestration
+ - Airflow + Docker set up and config to run Airflow locally
+ - DAG which would load Bronze, Bronze Delta, Silver Delta, and Gold Delta
+ - DAG processes the pipelines in order and uses the previous level for dependency management

@@ -81,6 +81,7 @@ def extract_resources() -> None:
                 f"Failed to extract "
                 f"{resource_type}: {error}"
             )
+            raise
 
 
 if __name__ == "__main__":
