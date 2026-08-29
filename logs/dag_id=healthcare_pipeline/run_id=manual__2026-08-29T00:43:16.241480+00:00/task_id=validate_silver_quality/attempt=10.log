@@ -1,0 +1,46 @@
+{"timestamp":"2026-08-29T01:47:13.329606Z","level":"info","event":"::group::Pre Execute","logger":"task","filename":"task_runner.py","lineno":2412}
+{"timestamp":"2026-08-29T01:47:13.341061Z","level":"info","event":"DAG bundles loaded: dags-folder","ti_id":"01a04b33-0ed6-7d65-9f30-14a18e4366c1","map_index":-1,"try_number":10,"task_id":"validate_silver_quality","dag_id":"healthcare_pipeline","run_id":"manual__2026-08-29T00:43:16.241480+00:00","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":304}
+{"timestamp":"2026-08-29T01:47:13.341939Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/healthcare_pipeline.py","ti_id":"01a04b33-0ed6-7d65-9f30-14a18e4366c1","map_index":-1,"try_number":10,"task_id":"validate_silver_quality","dag_id":"healthcare_pipeline","run_id":"manual__2026-08-29T00:43:16.241480+00:00","logger":"airflow.dag_processing.dagbag.BundleDagBag","filename":"dagbag.py","lineno":460}
+{"timestamp":"2026-08-29T01:47:13.671932Z","level":"info","event":"Worker startup parse complete","bundle_name":"dags-folder","bundle_version":null,"dag_file":"healthcare_pipeline.py","dag_id":"healthcare_pipeline","bundle_prepare_ms":3,"dag_file_parse_ms":330,"ti_id":"01a04b33-0ed6-7d65-9f30-14a18e4366c1","map_index":-1,"try_number":10,"task_id":"validate_silver_quality","run_id":"manual__2026-08-29T00:43:16.241480+00:00","logger":"task","filename":"task_runner.py","lineno":1073}
+{"timestamp":"2026-08-29T01:47:13.690141Z","level":"info","event":"::endgroup::","ti_id":"01a04b33-0ed6-7d65-9f30-14a18e4366c1","map_index":-1,"try_number":10,"task_id":"validate_silver_quality","dag_id":"healthcare_pipeline","run_id":"manual__2026-08-29T00:43:16.241480+00:00","logger":"task","filename":"task_runner.py","lineno":2232}
+{"timestamp":"2026-08-29T01:47:14.743680Z","level":"info","event":":: loading settings :: url = jar:file:/home/airflow/.local/lib/python3.11/site-packages/pyspark/jars/ivy-2.5.3.jar!/org/apache/ivy/core/settings/ivysettings.xml","logger":"task.stdout"}
+{"timestamp":"2026-08-29T01:47:14.806681Z","level":"error","event":"Ivy Default Cache set to: /home/airflow/.ivy2/cache","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.808830Z","level":"error","event":"The jars for the packages stored in: /home/airflow/.ivy2/jars","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.811871Z","level":"error","event":"io.delta#delta-spark_2.12 added as a dependency","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.813512Z","level":"error","event":":: resolving dependencies :: org.apache.spark#spark-submit-parent-970ed6e9-57ac-4597-a671-a04ecdd1d404;1.0","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.816336Z","level":"error","event":"\tconfs: [default]","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.903594Z","level":"error","event":"\tfound io.delta#delta-spark_2.12;3.3.2 in spark-list","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.923561Z","level":"error","event":"\tfound io.delta#delta-storage;3.3.2 in central","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.937868Z","level":"error","event":"\tfound org.antlr#antlr4-runtime;4.9.3 in spark-list","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.951101Z","level":"error","event":":: resolution report :: resolve 134ms :: artifacts dl 3ms","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.952840Z","level":"error","event":"\t:: modules in use:","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.956149Z","level":"error","event":"\tio.delta#delta-spark_2.12;3.3.2 from spark-list in [default]","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.958687Z","level":"error","event":"\tio.delta#delta-storage;3.3.2 from central in [default]","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.960678Z","level":"error","event":"\torg.antlr#antlr4-runtime;4.9.3 from spark-list in [default]","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.963248Z","level":"error","event":"\t---------------------------------------------------------------------","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.967956Z","level":"error","event":"\t|                  |            modules            ||   artifacts   |","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.970232Z","level":"error","event":"\t|       conf       | number| search|dwnlded|evicted|| number|dwnlded|","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.972247Z","level":"error","event":"\t---------------------------------------------------------------------","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.974552Z","level":"error","event":"\t|      default     |   3   |   0   |   0   |   0   ||   3   |   0   |","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.976105Z","level":"error","event":"\t---------------------------------------------------------------------","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.977804Z","level":"error","event":":: retrieving :: org.apache.spark#spark-submit-parent-970ed6e9-57ac-4597-a671-a04ecdd1d404","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.980379Z","level":"error","event":"\tconfs: [default]","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:14.982205Z","level":"error","event":"\t0 artifacts copied, 3 already retrieved (0kB/6ms)","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:15.086410Z","level":"error","event":"26/08/29 01:47:15 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:15.236553Z","level":"error","event":"Setting default log level to \"WARN\".","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:15.239213Z","level":"error","event":"To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:17.684789Z","level":"info","event":"Validating Patient Silver...","logger":"task.stdout"}
+{"timestamp":"2026-08-29T01:47:19.432739Z","level":"error","event":"26/08/29 01:47:19 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.","logger":"task.stderr"}
+{"timestamp":"2026-08-29T01:47:24.643833Z","level":"info","event":"Patient Silver validation passed.","logger":"task.stdout"}
+{"timestamp":"2026-08-29T01:47:24.695662Z","level":"info","event":"Validating Encounter Silver...","logger":"task.stdout"}
+{"timestamp":"2026-08-29T01:47:27.503676Z","level":"info","event":"Encounter Silver validation passed.","logger":"task.stdout"}
+{"timestamp":"2026-08-29T01:47:27.538919Z","level":"info","event":"Validating Condition Silver...","logger":"task.stdout"}
+{"timestamp":"2026-08-29T01:47:29.650132Z","level":"info","event":"Condition Silver validation passed.","logger":"task.stdout"}
+{"timestamp":"2026-08-29T01:47:29.676630Z","level":"info","event":"Validating Observation Silver...","logger":"task.stdout"}
+{"timestamp":"2026-08-29T01:47:31.375552Z","level":"info","event":"Observation Silver validation passed.","logger":"task.stdout"}
+{"timestamp":"2026-08-29T01:47:31.397189Z","level":"info","event":"Validating MedicationRequest Silver...","logger":"task.stdout"}
+{"timestamp":"2026-08-29T01:47:32.868450Z","level":"info","event":"MedicationRequest Silver validation passed.","logger":"task.stdout"}
+{"timestamp":"2026-08-29T01:47:32.868642Z","level":"info","event":"Done. Returned value was: None","ti_id":"01a04b33-0ed6-7d65-9f30-14a18e4366c1","map_index":-1,"try_number":10,"task_id":"validate_silver_quality","dag_id":"healthcare_pipeline","run_id":"manual__2026-08-29T00:43:16.241480+00:00","logger":"airflow.task.operators.airflow.providers.standard.decorators.python._PythonDecoratedOperator","filename":"python.py","lineno":233}
+{"timestamp":"2026-08-29T01:47:32.869438Z","level":"info","event":"::group::Post Execute","ti_id":"01a04b33-0ed6-7d65-9f30-14a18e4366c1","map_index":-1,"try_number":10,"task_id":"validate_silver_quality","dag_id":"healthcare_pipeline","run_id":"manual__2026-08-29T00:43:16.241480+00:00","logger":"task","filename":"task_runner.py","lineno":1580}
+{"timestamp":"2026-08-29T01:47:32.893142Z","level":"info","event":"::endgroup::","ti_id":"01a04b33-0ed6-7d65-9f30-14a18e4366c1","map_index":-1,"try_number":10,"task_id":"validate_silver_quality","dag_id":"healthcare_pipeline","run_id":"manual__2026-08-29T00:43:16.241480+00:00","logger":"task","filename":"task_runner.py","lineno":2379}
+{"timestamp":"2026-08-29T01:47:33.662645Z","level":"error","event":"\r[Stage 0:>                                                          (0 + 6) / 6]\r\r[Stage 2:>                                                        (0 + 10) / 50]\r\r[Stage 2:===================>                                     (17 + 8) / 50]\r\r[Stage 2:======================================>                  (34 + 8) / 50]","logger":"task.stderr"}

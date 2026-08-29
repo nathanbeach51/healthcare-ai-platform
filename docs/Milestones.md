@@ -197,3 +197,31 @@ Established the simulated Electronic Health Record (EHR) that will serve as the 
 - Configured Spark/Delta execution inside Airflow
 - Verified task-level logging
 - Successfully tested complete FHIR → Bronze → Silver → Gold pipeline
+
+## Milestone 15 — Data Quality & Observability ✅
+
+- Added reusable PySpark data-quality checks
+  - Non-empty datasets
+  - Non-null columns
+  - Unique keys
+  - Composite uniqueness
+  - Column ordering/comparison checks
+  - Numeric range validation
+- Added Silver quality validation
+  - Patient
+  - Encounter
+  - Condition
+  - Observation
+  - MedicationRequest
+- Added Gold quality validation
+  - Patient latest vitals
+  - Patient conditions
+  - Patient medications
+  - Patient utilization
+- Added healthcare-specific sanity checks
+  - Encounter start <= encounter end
+  - Plausible vital-sign ranges
+  - Non-negative aggregate counts
+- Integrated Silver and Gold quality gates into Airflow
+- Verified validation failures prevent downstream execution
+- Verified successful end-to-end pipeline execution

@@ -17,6 +17,8 @@ from processing.gold.patient_conditions import main as gold_patient_conditions_m
 from processing.gold.patient_latest_vitals import main as gold_patient_latest_vitals_main
 from processing.gold.patient_medications import main as gold_patient_meds_main
 from processing.gold.patient_utilization import main as gold_patient_util_main
+from quality.silver_validation import main as silver_validation_main
+from quality.gold_validation import main as gold_validation_main
 
 
 with DAG(
@@ -82,6 +84,14 @@ with DAG(
         gold_patient_meds_main()
 
     @task
+    def validate_silver_quality():
+        silver_validation_main()
+
+    @task
+    def validate_gold_quality():
+        gold_validation_main()
+
+    @task
     def process_gold_patient_util():
         gold_patient_util_main()
 
@@ -97,6 +107,8 @@ with DAG(
     gold_patient_latest_vitals = process_gold_patient_latest_vitals()
     gold_patient_meds = process_gold_patient_meds()
     gold_patient_util = process_gold_patient_util()
+    silver_validation = validate_silver_quality()
+    gold_validation = validate_gold_quality()
 
     extract_fhir >> bronze
 
@@ -116,9 +128,16 @@ with DAG(
     medication,
 ] >> validation
 
-validation >> [
+silver_validation >> [
     gold_patient_conditions,
     gold_patient_latest_vitals,
     gold_patient_meds,
     gold_patient_util,
 ]
+
+[  
+    gold_patient_conditions,
+    gold_patient_latest_vitals,
+    gold_patient_meds,
+    gold_patient_util, 
+] >> gold_validation
