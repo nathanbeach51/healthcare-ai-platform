@@ -2,6 +2,8 @@ import streamlit as st
 
 from dashboard.data_loader import load_patient_observations
 
+from ai.patient_assistant import ask_patient_question
+
 
 WEIGHT_CODE = "29463-7"
 BMI_CODE = "39156-5"
@@ -348,3 +350,54 @@ def show_patient_explorer(
             st.write(f"• {medication}")
     else:
         st.write("No active medications found.")
+
+        # --------------------------------------------------
+    # AI Patient Assistant
+    # --------------------------------------------------
+
+    st.divider()
+
+    st.subheader("Ask About This Patient")
+
+    st.caption(
+        "Ask questions based on the patient's available clinical data."
+    )
+
+    with st.form("patient_ai_form"):
+        patient_question = st.text_input(
+            "Question",
+            placeholder=(
+                "What conditions are recorded "
+                "for this patient?"
+            ),
+        )
+
+        ask_button = st.form_submit_button(
+            "Ask",
+            type="primary",
+        )
+
+    if ask_button:
+        if not patient_question.strip():
+            st.warning(
+                "Enter a question about the patient."
+            )
+
+        else:
+            with st.spinner(
+                "Reviewing patient record..."
+            ):
+                try:
+                    answer = ask_patient_question(
+                        patient_id=str(selected_patient),
+                        question=patient_question,
+                    )
+
+                    st.markdown(answer)
+
+                except Exception as error:
+                    st.error(
+                        "Unable to answer the question."
+                    )
+
+                    st.exception(error)

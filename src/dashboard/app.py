@@ -5,6 +5,7 @@ import pandas as pd
 from dashboard.views.population import show_population
 from dashboard.views.patient import show_patient_explorer
 
+
 from dashboard.data_loader import (
     load_patient_conditions,
     load_patient_latest_vitals,

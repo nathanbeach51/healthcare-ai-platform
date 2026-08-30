@@ -225,3 +225,19 @@ Established the simulated Electronic Health Record (EHR) that will serve as the 
 - Integrated Silver and Gold quality gates into Airflow
 - Verified validation failures prevent downstream execution
 - Verified successful end-to-end pipeline execution
+
+## Milestone 16 — Patient AI Assistant ✅
+
+- Added patient-level context retrieval from Gold Delta datasets
+- Created LLM-friendly structured patient context
+- Integrated OpenAI Responses API using GPT-5.6 Luna
+- Added grounded healthcare system prompt
+- Added guardrails against unsupported diagnosis and treatment recommendations
+- Added source provenance to AI responses
+- Added repeatable AI evaluation suite
+  - Factual retrieval
+  - Missing-data handling
+  - Clinical guardrails
+  - Source attribution
+- Achieved 7/7 evaluation checks
+- Integrated patient Q&A into Streamlit Patient Explorer
