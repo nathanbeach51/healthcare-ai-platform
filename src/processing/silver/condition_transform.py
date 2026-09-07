@@ -4,22 +4,32 @@ from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
 from pyspark.sql.window import Window
 
-from processing.spark_session import create_spark_session
-
-from processing.delta_utils import get_last_ingested_at, merge_delta
-
 from config.settings import DEBUG_LOGGING
+from processing.delta_utils import (
+    get_last_ingested_at,
+    merge_delta,
+)
+from processing.spark_session import create_spark_session
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
 CONDITION_BRONZE_DELTA_PATH = (
-    PROJECT_ROOT / "data" / "delta" / "bronze" / "condition"
+    PROJECT_ROOT
+    / "data"
+    / "delta"
+    / "bronze"
+    / "condition"
 )
 
 CONDITION_SILVER_DELTA_PATH = (
-    PROJECT_ROOT / "data" / "delta" / "silver" / "condition"
+    PROJECT_ROOT
+    / "data"
+    / "delta"
+    / "silver"
+    / "condition"
 )
+
 
 def read_bronze_conditions(
     spark: SparkSession,
@@ -51,32 +61,55 @@ def transform_conditions(
             1,
         ).alias("patient_id"),
 
-        F.col("resource.clinicalStatus.coding")[0]["code"]
-            .alias("clinical_status"),
+        F.col(
+            "resource.clinicalStatus.coding"
+        )[0]["code"].alias(
+            "clinical_status"
+        ),
 
-        F.col("resource.verificationStatus.coding")[0]["code"]
-            .alias("verification_status"),
+        F.col(
+            "resource.verificationStatus.coding"
+        )[0]["code"].alias(
+            "verification_status"
+        ),
 
-        F.col("resource.code.coding")[0]["code"]
-            .alias("condition_code"),
+        F.col(
+            "resource.code.coding"
+        )[0]["code"].alias(
+            "condition_code"
+        ),
 
-        F.col("resource.code.coding")[0]["display"]
-            .alias("condition_display"),
+        F.col(
+            "resource.code.coding"
+        )[0]["display"].alias(
+            "condition_display"
+        ),
 
-        F.col("resource.onsetDateTime")
-            .cast("timestamp")
-            .alias("onset_at"),
+        F.col(
+            "resource.onsetDateTime"
+        ).cast("timestamp").alias(
+            "onset_at"
+        ),
 
-        F.col("resource.recordedDate")
-            .cast("timestamp")
-            .alias("recorded_at"),
+        F.col(
+            "resource.recordedDate"
+        ).cast("timestamp").alias(
+            "recorded_at"
+        ),
 
-        F.col("resource.meta.lastUpdated")
-            .cast("timestamp")
-            .alias("source_last_updated"),
+        F.col(
+            "resource.meta.lastUpdated"
+        ).cast("timestamp").alias(
+            "source_last_updated"
+        ),
 
-        F.col("_source_file").alias("source_file"),
-        F.col("_ingested_at").alias("ingested_at"),
+        F.col("_source_file").alias(
+            "source_file"
+        ),
+
+        F.col("_ingested_at").alias(
+            "ingested_at"
+        ),
     )
 
 
@@ -87,7 +120,9 @@ def deduplicate_conditions(
         Window
         .partitionBy("condition_id")
         .orderBy(
-            F.col("source_last_updated").desc_nulls_last(),
+            F.col(
+                "source_last_updated"
+            ).desc_nulls_last(),
             F.col("ingested_at").desc(),
         )
     )
@@ -96,26 +131,23 @@ def deduplicate_conditions(
         conditions
         .withColumn(
             "_row_number",
-            F.row_number().over(latest_condition),
+            F.row_number().over(
+                latest_condition
+            ),
         )
-        .filter(F.col("_row_number") == 1)
+        .filter(
+            F.col("_row_number") == 1
+        )
         .drop("_row_number")
     )
 
 
-def add_condition_fields(
+def add_silver_metadata(
     conditions: DataFrame,
 ) -> DataFrame:
-    return (
-        conditions
-        .withColumn(
-            "is_active",
-            F.col("clinical_status") == "active",
-        )
-        .withColumn(
-            "silver_processed_at",
-            F.current_timestamp(),
-        )
+    return conditions.withColumn(
+        "silver_processed_at",
+        F.current_timestamp(),
     )
 
 
@@ -123,38 +155,57 @@ def validate_conditions(
     conditions: DataFrame,
 ) -> None:
     duplicate_count = (
-        conditions.groupBy("condition_id")
+        conditions
+        .groupBy("condition_id")
         .count()
-        .filter(F.col("count") > 1)
+        .filter(
+            F.col("count") > 1
+        )
         .count()
     )
 
     null_condition_id_count = (
         conditions
-        .filter(F.col("condition_id").isNull())
+        .filter(
+            F.col("condition_id").isNull()
+        )
         .count()
     )
 
     null_patient_id_count = (
         conditions
-        .filter(F.col("patient_id").isNull())
+        .filter(
+            F.col("patient_id").isNull()
+        )
         .count()
     )
 
     if duplicate_count:
         raise ValueError(
-            f"Found {duplicate_count} duplicate condition IDs."
+            f"Found {duplicate_count} "
+            "duplicate condition IDs."
         )
 
     if null_condition_id_count:
         raise ValueError(
-            f"Found {null_condition_id_count} null condition IDs."
+            f"Found {null_condition_id_count} "
+            "null condition IDs."
         )
 
     if null_patient_id_count:
         raise ValueError(
-            f"Found {null_patient_id_count} null patient IDs."
+            f"Found {null_patient_id_count} "
+            "null patient IDs."
         )
+
+
+def add_condition_fields(
+    conditions: DataFrame,
+) -> DataFrame:
+    return conditions.withColumn(
+        "is_active",
+        F.col("clinical_status") == "active",
+    )
 
 def write_silver_conditions(
     spark: SparkSession,
@@ -165,17 +216,23 @@ def write_silver_conditions(
         source=conditions,
         target_path=CONDITION_SILVER_DELTA_PATH,
         merge_condition=(
-            "target.condition_id = source.condition_id"
+            "target.condition_id = "
+            "source.condition_id"
         ),
     )
 
+
 def main() -> None:
-    spark = create_spark_session("condition-silver")
+    spark = create_spark_session(
+        "condition-silver"
+    )
 
     try:
-        last_ingested_at = get_last_ingested_at(
-            spark,
-            CONDITION_SILVER_DELTA_PATH,
+        last_ingested_at = (
+            get_last_ingested_at(
+                spark,
+                CONDITION_SILVER_DELTA_PATH,
+            )
         )
 
         bronze = read_bronze_conditions(
@@ -187,7 +244,10 @@ def main() -> None:
 
         print("\nCondition Silver")
         print("----------------")
-        print(f"New Bronze rows: {bronze_count}")
+        print(
+            f"New Bronze rows: "
+            f"{bronze_count}"
+        )
 
         if bronze_count == 0:
             print("Rows to merge: 0")
@@ -202,8 +262,12 @@ def main() -> None:
             transformed
         )
 
-        silver = add_condition_fields(
+        enriched = add_condition_fields(
             current
+        )
+
+        silver = add_silver_metadata(
+            enriched
         )
 
         validate_conditions(
@@ -213,11 +277,14 @@ def main() -> None:
         silver_count = silver.count()
 
         print(
-            f"Rows to merge: {silver_count}"
+            f"Rows to merge: "
+            f"{silver_count}"
         )
 
         if DEBUG_LOGGING:
-            print("\nSilver Condition sample:")
+            print(
+                "\nSilver Condition sample:"
+            )
             silver.show(
                 10,
                 truncate=False,
@@ -241,7 +308,8 @@ def main() -> None:
         saved_count = saved.count()
 
         print(
-            f"Total Silver rows: {saved_count}"
+            f"Total Silver rows: "
+            f"{saved_count}"
         )
         print("Status: SUCCESS")
 

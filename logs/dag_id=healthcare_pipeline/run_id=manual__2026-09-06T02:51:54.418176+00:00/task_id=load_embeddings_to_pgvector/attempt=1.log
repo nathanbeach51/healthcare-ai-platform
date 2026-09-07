@@ -1,0 +1,530 @@
+{"timestamp":"2026-09-06T03:01:10.870162Z","level":"info","event":"::group::Pre Execute","logger":"task","filename":"task_runner.py","lineno":2412}
+{"timestamp":"2026-09-06T03:01:10.966398Z","level":"info","event":"DAG bundles loaded: dags-folder","ti_id":"01a074a1-2b0e-7eab-b877-a65d87c58c70","run_id":"manual__2026-09-06T02:51:54.418176+00:00","map_index":-1,"task_id":"load_embeddings_to_pgvector","dag_id":"healthcare_pipeline","try_number":1,"logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":304}
+{"timestamp":"2026-09-06T03:01:10.970341Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/healthcare_pipeline.py","ti_id":"01a074a1-2b0e-7eab-b877-a65d87c58c70","run_id":"manual__2026-09-06T02:51:54.418176+00:00","map_index":-1,"task_id":"load_embeddings_to_pgvector","dag_id":"healthcare_pipeline","try_number":1,"logger":"airflow.dag_processing.dagbag.BundleDagBag","filename":"dagbag.py","lineno":460}
+{"timestamp":"2026-09-06T03:01:20.343092Z","level":"info","event":"Worker startup parse complete","bundle_name":"dags-folder","bundle_version":null,"dag_file":"healthcare_pipeline.py","dag_id":"healthcare_pipeline","bundle_prepare_ms":11,"dag_file_parse_ms":9371,"ti_id":"01a074a1-2b0e-7eab-b877-a65d87c58c70","run_id":"manual__2026-09-06T02:51:54.418176+00:00","map_index":-1,"task_id":"load_embeddings_to_pgvector","try_number":1,"logger":"task","filename":"task_runner.py","lineno":1073}
+{"timestamp":"2026-09-06T03:01:20.650993Z","level":"info","event":"::endgroup::","ti_id":"01a074a1-2b0e-7eab-b877-a65d87c58c70","run_id":"manual__2026-09-06T02:51:54.418176+00:00","map_index":-1,"task_id":"load_embeddings_to_pgvector","dag_id":"healthcare_pipeline","try_number":1,"logger":"task","filename":"task_runner.py","lineno":2232}
+{"timestamp":"2026-09-06T03:01:38.620642Z","level":"info","event":":: loading settings :: url = jar:file:/home/airflow/.local/lib/python3.11/site-packages/pyspark/jars/ivy-2.5.3.jar!/org/apache/ivy/core/settings/ivysettings.xml","logger":"task.stdout"}
+{"timestamp":"2026-09-06T03:01:39.444546Z","level":"error","event":"Ivy Default Cache set to: /home/airflow/.ivy2/cache","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:39.455436Z","level":"error","event":"The jars for the packages stored in: /home/airflow/.ivy2/jars","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:39.527244Z","level":"error","event":"io.delta#delta-spark_2.12 added as a dependency","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:39.578727Z","level":"error","event":":: resolving dependencies :: org.apache.spark#spark-submit-parent-d439b9e6-e540-499a-99a5-ed808bf6b2cb;1.0","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:39.589316Z","level":"error","event":"\tconfs: [default]","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:40.856654Z","level":"error","event":"\tfound io.delta#delta-spark_2.12;3.3.2 in central","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:41.173696Z","level":"error","event":"\tfound io.delta#delta-storage;3.3.2 in central","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:41.386177Z","level":"error","event":"\tfound org.antlr#antlr4-runtime;4.9.3 in central","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:41.641828Z","level":"error","event":":: resolution report :: resolve 1895ms :: artifacts dl 170ms","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:41.649655Z","level":"error","event":"\t:: modules in use:","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:41.659292Z","level":"error","event":"\tio.delta#delta-spark_2.12;3.3.2 from central in [default]","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:41.674253Z","level":"error","event":"\tio.delta#delta-storage;3.3.2 from central in [default]","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:41.685485Z","level":"error","event":"\torg.antlr#antlr4-runtime;4.9.3 from central in [default]","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:41.691248Z","level":"error","event":"\t---------------------------------------------------------------------","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:41.711485Z","level":"error","event":"\t|                  |            modules            ||   artifacts   |","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:41.718438Z","level":"error","event":"\t|       conf       | number| search|dwnlded|evicted|| number|dwnlded|","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:41.722599Z","level":"error","event":"\t---------------------------------------------------------------------","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:41.729842Z","level":"error","event":"\t|      default     |   3   |   0   |   0   |   0   ||   3   |   0   |","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:41.735684Z","level":"error","event":"\t---------------------------------------------------------------------","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:41.770399Z","level":"error","event":":: retrieving :: org.apache.spark#spark-submit-parent-d439b9e6-e540-499a-99a5-ed808bf6b2cb","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:41.791709Z","level":"error","event":"\tconfs: [default]","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:41.928627Z","level":"error","event":"\t0 artifacts copied, 3 already retrieved (0kB/131ms)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:44.484830Z","level":"error","event":"26/09/06 03:01:44 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:50.489679Z","level":"error","event":"Setting default log level to \"WARN\".","logger":"task.stderr"}
+{"timestamp":"2026-09-06T03:01:50.539768Z","level":"error","event":"To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.541149Z","level":"error","event":"26/09/06 21:47:57 WARN HeartbeatReceiver: Removing executor driver with no recent heartbeats: 67510684 ms exceeds timeout 120000 ms","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.553068Z","level":"error","event":"26/09/06 21:47:58 WARN SparkContext: Killing executors is not supported by current scheduler.","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.559108Z","level":"error","event":"26/09/06 21:47:58 WARN Executor: Issue communicating with driver in heartbeater","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.563503Z","level":"error","event":"org.apache.spark.SparkException: Exception thrown in awaitResult:","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.570020Z","level":"error","event":"\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.576110Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.581352Z","level":"error","event":"\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.586959Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.589582Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.594944Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.598835Z","level":"error","event":"\tat org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.605089Z","level":"error","event":"\tat org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1240)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.616409Z","level":"error","event":"\tat org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:296)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.630406Z","level":"error","event":"\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.636266Z","level":"error","event":"\tat org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.640627Z","level":"error","event":"\tat org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.646571Z","level":"error","event":"\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.658271Z","level":"error","event":"\tat java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.666831Z","level":"error","event":"\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.669583Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.674940Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.682956Z","level":"error","event":"\tat java.base/java.lang.Thread.run(Thread.java:840)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.686328Z","level":"error","event":"Caused by: org.apache.spark.SparkException: Exception thrown in awaitResult:","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.693197Z","level":"error","event":"\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.697286Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.702377Z","level":"error","event":"\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.705853Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRefByURI(RpcEnv.scala:102)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.716541Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRef(RpcEnv.scala:110)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.719268Z","level":"error","event":"\tat org.apache.spark.util.RpcUtils$.makeDriverRef(RpcUtils.scala:36)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.721323Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.driverEndpoint$lzycompute(BlockManagerMasterEndpoint.scala:124)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.722762Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$driverEndpoint(BlockManagerMasterEndpoint.scala:123)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.725281Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$lzycompute$1(BlockManagerMasterEndpoint.scala:688)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.729395Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$1(BlockManagerMasterEndpoint.scala:687)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.731048Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:725)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.733518Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.739498Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.744320Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.750841Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.754144Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.758386Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.764105Z","level":"error","event":"\t... 3 more","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.768977Z","level":"error","event":"Caused by: org.apache.spark.rpc.RpcEndpointNotFoundException: Cannot find endpoint: spark://CoarseGrainedScheduler@de1a6ab6c7b3:38651","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.776289Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1(NettyRpcEnv.scala:148)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.792936Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1$adapted(NettyRpcEnv.scala:144)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.800348Z","level":"error","event":"\tat scala.concurrent.Future.$anonfun$flatMap$1(Future.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.814410Z","level":"error","event":"\tat scala.concurrent.impl.Promise.$anonfun$transformWith$1(Promise.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.817660Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.824360Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.858152Z","level":"error","event":"\tat scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.869274Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.884004Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.dispatchOrAddCallback(Promise.scala:316)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.891127Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.onComplete(Promise.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.905039Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith(Promise.scala:40)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.907554Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith$(Promise.scala:38)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.923300Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.transformWith(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.936963Z","level":"error","event":"\tat scala.concurrent.Future.flatMap(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.943923Z","level":"error","event":"\tat scala.concurrent.Future.flatMap$(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.953642Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.flatMap(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.958321Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.asyncSetupEndpointRefByURI(NettyRpcEnv.scala:150)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.968587Z","level":"error","event":"\t... 17 more","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.971210Z","level":"error","event":"26/09/06 21:47:58 ERROR Inbox: Ignoring error","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.972586Z","level":"error","event":"org.apache.spark.SparkException: Exception thrown in awaitResult:","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.975055Z","level":"error","event":"\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.979365Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.982000Z","level":"error","event":"\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.986350Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRefByURI(RpcEnv.scala:102)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.988253Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRef(RpcEnv.scala:110)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:58.990532Z","level":"error","event":"\tat org.apache.spark.util.RpcUtils$.makeDriverRef(RpcUtils.scala:36)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.004369Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.driverEndpoint$lzycompute(BlockManagerMasterEndpoint.scala:124)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.021610Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$driverEndpoint(BlockManagerMasterEndpoint.scala:123)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.031231Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$lzycompute$1(BlockManagerMasterEndpoint.scala:688)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.046636Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$1(BlockManagerMasterEndpoint.scala:687)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.054905Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:725)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.064396Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.073851Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.076512Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.080398Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.087035Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.093118Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.099234Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.111130Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.120961Z","level":"error","event":"\tat java.base/java.lang.Thread.run(Thread.java:840)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.124609Z","level":"error","event":"Caused by: org.apache.spark.rpc.RpcEndpointNotFoundException: Cannot find endpoint: spark://CoarseGrainedScheduler@de1a6ab6c7b3:38651","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.128178Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1(NettyRpcEnv.scala:148)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.130523Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1$adapted(NettyRpcEnv.scala:144)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.135163Z","level":"error","event":"\tat scala.concurrent.Future.$anonfun$flatMap$1(Future.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.161252Z","level":"error","event":"\tat scala.concurrent.impl.Promise.$anonfun$transformWith$1(Promise.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.170067Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.176076Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.184648Z","level":"error","event":"\tat scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.190962Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.195613Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.dispatchOrAddCallback(Promise.scala:316)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.198217Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.onComplete(Promise.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.203887Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith(Promise.scala:40)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.206077Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith$(Promise.scala:38)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.208907Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.transformWith(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.212871Z","level":"error","event":"\tat scala.concurrent.Future.flatMap(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.224781Z","level":"error","event":"\tat scala.concurrent.Future.flatMap$(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.226476Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.flatMap(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.231380Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.asyncSetupEndpointRefByURI(NettyRpcEnv.scala:150)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.235863Z","level":"error","event":"\t... 17 more","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.237437Z","level":"error","event":"26/09/06 21:47:58 WARN Executor: Issue communicating with driver in heartbeater","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.242139Z","level":"error","event":"org.apache.spark.SparkException: Exception thrown in awaitResult:","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.245524Z","level":"error","event":"\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.249249Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.256247Z","level":"error","event":"\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.263506Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.266506Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.269644Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.274132Z","level":"error","event":"\tat org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.277131Z","level":"error","event":"\tat org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1240)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.280991Z","level":"error","event":"\tat org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:296)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.283313Z","level":"error","event":"\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.287209Z","level":"error","event":"\tat org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.289235Z","level":"error","event":"\tat org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.293237Z","level":"error","event":"\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.296205Z","level":"error","event":"\tat java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.298271Z","level":"error","event":"\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.302418Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.306036Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.308647Z","level":"error","event":"\tat java.base/java.lang.Thread.run(Thread.java:840)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.318311Z","level":"error","event":"Caused by: org.apache.spark.SparkException: Exception thrown in awaitResult:","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.320480Z","level":"error","event":"\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.322929Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.324835Z","level":"error","event":"\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.330420Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRefByURI(RpcEnv.scala:102)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.333374Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRef(RpcEnv.scala:110)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.337581Z","level":"error","event":"\tat org.apache.spark.util.RpcUtils$.makeDriverRef(RpcUtils.scala:36)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.343781Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.driverEndpoint$lzycompute(BlockManagerMasterEndpoint.scala:124)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.352409Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$driverEndpoint(BlockManagerMasterEndpoint.scala:123)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.358413Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$lzycompute$1(BlockManagerMasterEndpoint.scala:688)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.361110Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$1(BlockManagerMasterEndpoint.scala:687)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.362597Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:725)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.364529Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.369385Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.378538Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.382367Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.385425Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.387566Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.390578Z","level":"error","event":"\t... 3 more","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.394581Z","level":"error","event":"Caused by: org.apache.spark.rpc.RpcEndpointNotFoundException: Cannot find endpoint: spark://CoarseGrainedScheduler@de1a6ab6c7b3:38651","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.401104Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1(NettyRpcEnv.scala:148)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.408091Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1$adapted(NettyRpcEnv.scala:144)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.422372Z","level":"error","event":"\tat scala.concurrent.Future.$anonfun$flatMap$1(Future.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.461215Z","level":"error","event":"\tat scala.concurrent.impl.Promise.$anonfun$transformWith$1(Promise.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.469501Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.478033Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.484585Z","level":"error","event":"\tat scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.490518Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.499445Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.dispatchOrAddCallback(Promise.scala:316)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.506191Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.onComplete(Promise.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.524188Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith(Promise.scala:40)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.530117Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith$(Promise.scala:38)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.533037Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.transformWith(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.535595Z","level":"error","event":"\tat scala.concurrent.Future.flatMap(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.539528Z","level":"error","event":"\tat scala.concurrent.Future.flatMap$(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.549155Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.flatMap(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.557404Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.asyncSetupEndpointRefByURI(NettyRpcEnv.scala:150)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.562266Z","level":"error","event":"\t... 17 more","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.567302Z","level":"error","event":"26/09/06 21:47:58 ERROR Inbox: Ignoring error","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.574161Z","level":"error","event":"org.apache.spark.SparkException: Exception thrown in awaitResult:","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.580166Z","level":"error","event":"\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.585100Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.589179Z","level":"error","event":"\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.595371Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRefByURI(RpcEnv.scala:102)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.603105Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRef(RpcEnv.scala:110)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.609008Z","level":"error","event":"\tat org.apache.spark.util.RpcUtils$.makeDriverRef(RpcUtils.scala:36)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.612315Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.driverEndpoint$lzycompute(BlockManagerMasterEndpoint.scala:124)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.617535Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$driverEndpoint(BlockManagerMasterEndpoint.scala:123)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.620799Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$lzycompute$1(BlockManagerMasterEndpoint.scala:688)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.628865Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$1(BlockManagerMasterEndpoint.scala:687)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.633456Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:725)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.640090Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.642111Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.655834Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.662066Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.670981Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.677984Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.680786Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.683204Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.689627Z","level":"error","event":"\tat java.base/java.lang.Thread.run(Thread.java:840)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.702273Z","level":"error","event":"Caused by: org.apache.spark.rpc.RpcEndpointNotFoundException: Cannot find endpoint: spark://CoarseGrainedScheduler@de1a6ab6c7b3:38651","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.705591Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1(NettyRpcEnv.scala:148)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.709516Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1$adapted(NettyRpcEnv.scala:144)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.714442Z","level":"error","event":"\tat scala.concurrent.Future.$anonfun$flatMap$1(Future.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.720258Z","level":"error","event":"\tat scala.concurrent.impl.Promise.$anonfun$transformWith$1(Promise.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.724183Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.726013Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.729763Z","level":"error","event":"\tat scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.734852Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.737784Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.dispatchOrAddCallback(Promise.scala:316)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.741513Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.onComplete(Promise.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.744096Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith(Promise.scala:40)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.750031Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith$(Promise.scala:38)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.753935Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.transformWith(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.760002Z","level":"error","event":"\tat scala.concurrent.Future.flatMap(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.766347Z","level":"error","event":"\tat scala.concurrent.Future.flatMap$(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.774088Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.flatMap(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.776366Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.asyncSetupEndpointRefByURI(NettyRpcEnv.scala:150)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.779394Z","level":"error","event":"\t... 17 more","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.782545Z","level":"error","event":"26/09/06 21:47:58 WARN Executor: Issue communicating with driver in heartbeater","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.788465Z","level":"error","event":"org.apache.spark.SparkException: Exception thrown in awaitResult:","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.792360Z","level":"error","event":"\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.795004Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.798089Z","level":"error","event":"\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.804622Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.808051Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.811095Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.815603Z","level":"error","event":"\tat org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.819114Z","level":"error","event":"\tat org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1240)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.823088Z","level":"error","event":"\tat org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:296)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.825610Z","level":"error","event":"\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.827355Z","level":"error","event":"\tat org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.829324Z","level":"error","event":"\tat org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.830897Z","level":"error","event":"\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.832515Z","level":"error","event":"\tat java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.836214Z","level":"error","event":"\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.843048Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.846994Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.853618Z","level":"error","event":"\tat java.base/java.lang.Thread.run(Thread.java:840)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.861582Z","level":"error","event":"Caused by: org.apache.spark.SparkException: Exception thrown in awaitResult:","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.871970Z","level":"error","event":"\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.876057Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.891128Z","level":"error","event":"\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.898177Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRefByURI(RpcEnv.scala:102)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.905201Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRef(RpcEnv.scala:110)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.912064Z","level":"error","event":"\tat org.apache.spark.util.RpcUtils$.makeDriverRef(RpcUtils.scala:36)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.928084Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.driverEndpoint$lzycompute(BlockManagerMasterEndpoint.scala:124)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.938398Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$driverEndpoint(BlockManagerMasterEndpoint.scala:123)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.945136Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$lzycompute$1(BlockManagerMasterEndpoint.scala:688)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.951195Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$1(BlockManagerMasterEndpoint.scala:687)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.955235Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:725)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.958142Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.962130Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.965242Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.968204Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.970453Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.974660Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.980312Z","level":"error","event":"\t... 3 more","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.983272Z","level":"error","event":"Caused by: org.apache.spark.rpc.RpcEndpointNotFoundException: Cannot find endpoint: spark://CoarseGrainedScheduler@de1a6ab6c7b3:38651","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.987166Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1(NettyRpcEnv.scala:148)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.988907Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1$adapted(NettyRpcEnv.scala:144)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:47:59.995065Z","level":"error","event":"\tat scala.concurrent.Future.$anonfun$flatMap$1(Future.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.000081Z","level":"error","event":"\tat scala.concurrent.impl.Promise.$anonfun$transformWith$1(Promise.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.005140Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.008232Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.009585Z","level":"error","event":"\tat scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.014342Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.019391Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.dispatchOrAddCallback(Promise.scala:316)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.027204Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.onComplete(Promise.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.034568Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith(Promise.scala:40)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.053451Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith$(Promise.scala:38)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.092532Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.transformWith(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.102357Z","level":"error","event":"\tat scala.concurrent.Future.flatMap(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.119007Z","level":"error","event":"\tat scala.concurrent.Future.flatMap$(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.130146Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.flatMap(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.134871Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.asyncSetupEndpointRefByURI(NettyRpcEnv.scala:150)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.139593Z","level":"error","event":"\t... 17 more","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.143364Z","level":"error","event":"26/09/06 21:47:58 ERROR Inbox: Ignoring error","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.156471Z","level":"error","event":"org.apache.spark.SparkException: Exception thrown in awaitResult:","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.165365Z","level":"error","event":"\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.176343Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.201913Z","level":"error","event":"\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.205043Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRefByURI(RpcEnv.scala:102)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.207619Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRef(RpcEnv.scala:110)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.210855Z","level":"error","event":"\tat org.apache.spark.util.RpcUtils$.makeDriverRef(RpcUtils.scala:36)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.221200Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.driverEndpoint$lzycompute(BlockManagerMasterEndpoint.scala:124)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.229174Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$driverEndpoint(BlockManagerMasterEndpoint.scala:123)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.240925Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$lzycompute$1(BlockManagerMasterEndpoint.scala:688)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.248122Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$1(BlockManagerMasterEndpoint.scala:687)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.255286Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:725)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.257959Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.280940Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.293071Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.343270Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.353261Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.360374Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.365352Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.374206Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.386225Z","level":"error","event":"\tat java.base/java.lang.Thread.run(Thread.java:840)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.391154Z","level":"error","event":"Caused by: org.apache.spark.rpc.RpcEndpointNotFoundException: Cannot find endpoint: spark://CoarseGrainedScheduler@de1a6ab6c7b3:38651","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.395522Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1(NettyRpcEnv.scala:148)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.398136Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1$adapted(NettyRpcEnv.scala:144)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.401208Z","level":"error","event":"\tat scala.concurrent.Future.$anonfun$flatMap$1(Future.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.404355Z","level":"error","event":"\tat scala.concurrent.impl.Promise.$anonfun$transformWith$1(Promise.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.406345Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.407639Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.411494Z","level":"error","event":"\tat scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.413928Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.436216Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.dispatchOrAddCallback(Promise.scala:316)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.439120Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.onComplete(Promise.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.445845Z","level":"info","event":"Last pgvector checkpoint: 2026-09-06 02:26:43.622614","logger":"task.stdout"}
+{"timestamp":"2026-09-06T21:48:00.450110Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith(Promise.scala:40)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.454010Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith$(Promise.scala:38)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.465424Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.transformWith(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.470191Z","level":"error","event":"\tat scala.concurrent.Future.flatMap(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.473799Z","level":"error","event":"\tat scala.concurrent.Future.flatMap$(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.475423Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.flatMap(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.480153Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.asyncSetupEndpointRefByURI(NettyRpcEnv.scala:150)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:00.483253Z","level":"error","event":"\t... 17 more","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:08.045347Z","level":"error","event":"26/09/06 21:48:07 WARN Executor: Issue communicating with driver in heartbeater","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:08.135277Z","level":"error","event":"org.apache.spark.SparkException: Exception thrown in awaitResult:","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:08.156958Z","level":"error","event":"\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:08.214506Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:08.225840Z","level":"error","event":"\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:08.245803Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:08.258891Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:08.265208Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:08.280831Z","level":"error","event":"\tat org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:08.299858Z","level":"error","event":"\tat org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1240)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:08.316122Z","level":"error","event":"\tat org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:296)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:08.330037Z","level":"error","event":"\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:08.339309Z","level":"error","event":"\tat org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:08.368384Z","level":"error","event":"\tat org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:08.454100Z","level":"error","event":"\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:08.525937Z","level":"error","event":"\tat java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:08.575378Z","level":"error","event":"\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:08.680526Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:09.004424Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:09.039292Z","level":"error","event":"\tat java.base/java.lang.Thread.run(Thread.java:840)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:09.132475Z","level":"error","event":"Caused by: org.apache.spark.SparkException: Exception thrown in awaitResult:","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:09.501087Z","level":"error","event":"\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:09.577241Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:09.645483Z","level":"error","event":"\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:09.664946Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRefByURI(RpcEnv.scala:102)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:09.749478Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRef(RpcEnv.scala:110)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:09.804045Z","level":"error","event":"\tat org.apache.spark.util.RpcUtils$.makeDriverRef(RpcUtils.scala:36)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:09.909077Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.driverEndpoint$lzycompute(BlockManagerMasterEndpoint.scala:124)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:09.933230Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$driverEndpoint(BlockManagerMasterEndpoint.scala:123)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:09.997916Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$lzycompute$1(BlockManagerMasterEndpoint.scala:688)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.018229Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$1(BlockManagerMasterEndpoint.scala:687)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.055463Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:725)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.083811Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.100269Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.123598Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.163196Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.198520Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.240962Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.267382Z","level":"error","event":"\t... 3 more","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.282208Z","level":"error","event":"Caused by: org.apache.spark.rpc.RpcEndpointNotFoundException: Cannot find endpoint: spark://CoarseGrainedScheduler@de1a6ab6c7b3:38651","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.290047Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1(NettyRpcEnv.scala:148)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.316644Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1$adapted(NettyRpcEnv.scala:144)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.332902Z","level":"error","event":"\tat scala.concurrent.Future.$anonfun$flatMap$1(Future.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.347878Z","level":"error","event":"\tat scala.concurrent.impl.Promise.$anonfun$transformWith$1(Promise.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.393445Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.404816Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.414778Z","level":"error","event":"\tat scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.444951Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.455459Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.dispatchOrAddCallback(Promise.scala:316)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.468113Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.onComplete(Promise.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.520662Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith(Promise.scala:40)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.550427Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith$(Promise.scala:38)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.560619Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.transformWith(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.577350Z","level":"error","event":"\tat scala.concurrent.Future.flatMap(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.626895Z","level":"error","event":"\tat scala.concurrent.Future.flatMap$(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.648376Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.flatMap(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.654915Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.asyncSetupEndpointRefByURI(NettyRpcEnv.scala:150)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.689205Z","level":"error","event":"\t... 17 more","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.708050Z","level":"error","event":"26/09/06 21:48:07 ERROR Inbox: Ignoring error","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.761424Z","level":"error","event":"org.apache.spark.SparkException: Exception thrown in awaitResult:","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.807579Z","level":"error","event":"\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.815414Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.822098Z","level":"error","event":"\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.844380Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRefByURI(RpcEnv.scala:102)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.851621Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRef(RpcEnv.scala:110)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.854989Z","level":"error","event":"\tat org.apache.spark.util.RpcUtils$.makeDriverRef(RpcUtils.scala:36)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.861469Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.driverEndpoint$lzycompute(BlockManagerMasterEndpoint.scala:124)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.867570Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$driverEndpoint(BlockManagerMasterEndpoint.scala:123)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.894346Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$lzycompute$1(BlockManagerMasterEndpoint.scala:688)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.916439Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$1(BlockManagerMasterEndpoint.scala:687)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:10.980457Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:725)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.000975Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.038237Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.072501Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.079361Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.114214Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.138300Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.176153Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.184660Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.209771Z","level":"error","event":"\tat java.base/java.lang.Thread.run(Thread.java:840)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.218408Z","level":"error","event":"Caused by: org.apache.spark.rpc.RpcEndpointNotFoundException: Cannot find endpoint: spark://CoarseGrainedScheduler@de1a6ab6c7b3:38651","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.235433Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1(NettyRpcEnv.scala:148)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.240494Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1$adapted(NettyRpcEnv.scala:144)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.288788Z","level":"error","event":"\tat scala.concurrent.Future.$anonfun$flatMap$1(Future.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.315070Z","level":"error","event":"\tat scala.concurrent.impl.Promise.$anonfun$transformWith$1(Promise.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.329398Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.350348Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.363488Z","level":"error","event":"\tat scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.368305Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.372426Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.dispatchOrAddCallback(Promise.scala:316)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.379017Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.onComplete(Promise.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.381622Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith(Promise.scala:40)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.396269Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith$(Promise.scala:38)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.407509Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.transformWith(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.435521Z","level":"error","event":"\tat scala.concurrent.Future.flatMap(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.450562Z","level":"error","event":"\tat scala.concurrent.Future.flatMap$(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:11.500524Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.flatMap(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:16.128595Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.asyncSetupEndpointRefByURI(NettyRpcEnv.scala:150)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:19.216808Z","level":"error","event":"\t... 17 more","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.656452Z","level":"error","event":"26/09/06 21:48:20 ERROR Inbox: Ignoring error","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.708589Z","level":"error","event":"org.apache.spark.SparkException: Exception thrown in awaitResult:","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.759483Z","level":"error","event":"\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.785104Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.810509Z","level":"error","event":"\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.836583Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRefByURI(RpcEnv.scala:102)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.857464Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRef(RpcEnv.scala:110)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.890187Z","level":"error","event":"\tat org.apache.spark.util.RpcUtils$.makeDriverRef(RpcUtils.scala:36)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.896363Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.driverEndpoint$lzycompute(BlockManagerMasterEndpoint.scala:124)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.906416Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$driverEndpoint(BlockManagerMasterEndpoint.scala:123)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.917284Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$lzycompute$1(BlockManagerMasterEndpoint.scala:688)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.921824Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$1(BlockManagerMasterEndpoint.scala:687)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.927853Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:725)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.936642Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.946075Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.949398Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.957600Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.971247Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.981276Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:20.988182Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.001356Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.014063Z","level":"error","event":"\tat java.base/java.lang.Thread.run(Thread.java:840)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.019510Z","level":"error","event":"Caused by: org.apache.spark.rpc.RpcEndpointNotFoundException: Cannot find endpoint: spark://CoarseGrainedScheduler@de1a6ab6c7b3:38651","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.023352Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1(NettyRpcEnv.scala:148)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.031434Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1$adapted(NettyRpcEnv.scala:144)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.077076Z","level":"error","event":"\tat scala.concurrent.Future.$anonfun$flatMap$1(Future.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.141164Z","level":"error","event":"\tat scala.concurrent.impl.Promise.$anonfun$transformWith$1(Promise.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.171600Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.205918Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.287317Z","level":"error","event":"\tat scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.302826Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.344377Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.dispatchOrAddCallback(Promise.scala:316)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.374438Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.onComplete(Promise.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.406946Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith(Promise.scala:40)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.446821Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith$(Promise.scala:38)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.460086Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.transformWith(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.471992Z","level":"error","event":"\tat scala.concurrent.Future.flatMap(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.482190Z","level":"error","event":"\tat scala.concurrent.Future.flatMap$(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.495487Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.flatMap(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.502575Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.asyncSetupEndpointRefByURI(NettyRpcEnv.scala:150)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.515032Z","level":"error","event":"\t... 17 more","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.786638Z","level":"error","event":"26/09/06 21:48:20 WARN Executor: Issue communicating with driver in heartbeater","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.799454Z","level":"error","event":"org.apache.spark.SparkException: Exception thrown in awaitResult:","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.803404Z","level":"error","event":"\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.810520Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.831155Z","level":"error","event":"\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.839482Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.855083Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.872513Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.885895Z","level":"error","event":"\tat org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.902158Z","level":"error","event":"\tat org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1240)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.912339Z","level":"error","event":"\tat org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:296)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.921650Z","level":"error","event":"\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.949142Z","level":"error","event":"\tat org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.966864Z","level":"error","event":"\tat org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.987011Z","level":"error","event":"\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:21.998138Z","level":"error","event":"\tat java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.013426Z","level":"error","event":"\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.018018Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.025346Z","level":"error","event":"\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.043242Z","level":"error","event":"\tat java.base/java.lang.Thread.run(Thread.java:840)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.097791Z","level":"error","event":"Caused by: org.apache.spark.SparkException: Exception thrown in awaitResult:","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.108397Z","level":"error","event":"\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.123415Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.136366Z","level":"error","event":"\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.148124Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRefByURI(RpcEnv.scala:102)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.155921Z","level":"error","event":"\tat org.apache.spark.rpc.RpcEnv.setupEndpointRef(RpcEnv.scala:110)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.161965Z","level":"error","event":"\tat org.apache.spark.util.RpcUtils$.makeDriverRef(RpcUtils.scala:36)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.173334Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.driverEndpoint$lzycompute(BlockManagerMasterEndpoint.scala:124)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.185370Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$driverEndpoint(BlockManagerMasterEndpoint.scala:123)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.218548Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$lzycompute$1(BlockManagerMasterEndpoint.scala:688)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.259318Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$1(BlockManagerMasterEndpoint.scala:687)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.272483Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:725)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.286024Z","level":"error","event":"\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.307313Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.319048Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.396429Z","level":"error","event":"\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.410341Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.456834Z","level":"error","event":"\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.497596Z","level":"error","event":"\t... 3 more","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.513577Z","level":"error","event":"Caused by: org.apache.spark.rpc.RpcEndpointNotFoundException: Cannot find endpoint: spark://CoarseGrainedScheduler@de1a6ab6c7b3:38651","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.521476Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1(NettyRpcEnv.scala:148)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.535806Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1$adapted(NettyRpcEnv.scala:144)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.540981Z","level":"error","event":"\tat scala.concurrent.Future.$anonfun$flatMap$1(Future.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.567071Z","level":"error","event":"\tat scala.concurrent.impl.Promise.$anonfun$transformWith$1(Promise.scala:41)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.595607Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.605057Z","level":"error","event":"\tat org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.614901Z","level":"error","event":"\tat scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.629599Z","level":"error","event":"\tat scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.639963Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.dispatchOrAddCallback(Promise.scala:316)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.650198Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.onComplete(Promise.scala:307)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.666335Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith(Promise.scala:40)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.679002Z","level":"error","event":"\tat scala.concurrent.impl.Promise.transformWith$(Promise.scala:38)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.692976Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.transformWith(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.705325Z","level":"error","event":"\tat scala.concurrent.Future.flatMap(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.711995Z","level":"error","event":"\tat scala.concurrent.Future.flatMap$(Future.scala:306)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.751440Z","level":"error","event":"\tat scala.concurrent.impl.Promise$DefaultPromise.flatMap(Promise.scala:187)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.760247Z","level":"error","event":"\tat org.apache.spark.rpc.netty.NettyRpcEnv.asyncSetupEndpointRefByURI(NettyRpcEnv.scala:150)","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:22.771241Z","level":"error","event":"\t... 17 more","logger":"task.stderr"}
+{"timestamp":"2026-09-06T21:48:28.828532Z","level":"critical","event":"Process terminated by signal. Likely out of memory error (OOM). For more information, see https://airflow.apache.org/docs/apache-airflow/stable/troubleshooting.html#process-terminated-by-signal.","signal":-9,"signal_name":"SIGKILL","logger":"task"}

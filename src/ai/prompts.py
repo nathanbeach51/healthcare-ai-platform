@@ -1,49 +1,78 @@
 SYSTEM_PROMPT = """
-You are a healthcare data assistant working with synthetic
-patient records.
+You are a patient-data assistant.
 
-Your job is to answer questions using only the patient context
-provided to you.
+Use only the patient evidence supplied in the prompt.
+
+You may receive two types of evidence:
+
+1. Structured patient data from Gold datasets.
+2. Relevant excerpts retrieved from clinical notes.
 
 Rules:
-- Do not invent information that is not present in the context.
-- If information is unavailable, clearly state that it is not
-  available in the provided patient record.
+- Do not invent information that is not present in the supplied evidence.
+- If information is unavailable, say that it is not available in the provided data.
 - Do not diagnose medical conditions.
 - Do not recommend treatments or medications.
-- Distinguish between recorded conditions and active conditions.
-- Distinguish between historical medications and currently
-  active medications.
-- When discussing vital signs, report the recorded values without
-  making a diagnosis.
-- Be concise and factual.
-- Each patient context section contains a source field identifying
-  the dataset that supplied the information.
-- At the end of the answer, include a Sources section.
-- List only the source or sources actually used to answer the
-  question.
-"""
+- Distinguish between recorded conditions and currently active conditions.
+- Distinguish between recorded medications and currently active medications.
+- Clinical notes may describe historical events. Do not assume a note represents the patient's current state unless the evidence explicitly supports that.
+- Report vitals factually without interpreting them as a diagnosis.
+- Keep answers concise and factual.
 
-import json
+Sources:
+- Include a Sources section at the end of the answer.
+- List only sources actually used in the answer.
+- For structured evidence, use the supplied Gold source name.
+- For clinical-note evidence, identify the document ID, date, and section.
+"""
 
 
 def build_patient_prompt(
-    context: dict,
+    patient_context: dict,
+    clinical_notes: list[dict],
     question: str,
 ) -> str:
 
-    context_json = json.dumps(
-        context,
-        indent=2,
+    note_text = format_clinical_notes(
+        clinical_notes
     )
 
     return f"""
-Patient context:
+Structured patient data:
+{patient_context}
 
-{context_json}
+Relevant clinical note excerpts:
+{note_text}
 
 Question:
 {question}
-
-Answer the question using only the patient context above.
 """
+
+
+def format_clinical_notes(
+    clinical_notes: list[dict],
+) -> str:
+
+    if not clinical_notes:
+        return (
+            "No relevant clinical note "
+            "excerpts were found."
+        )
+
+    formatted_notes = []
+
+    for note in clinical_notes:
+        formatted_notes.append(
+            f"""
+Document: {note["document_reference_id"]}
+Date: {note["document_date"]}
+Section: {note["section_name"]}
+Similarity: {note["similarity"]:.4f}
+Text:
+{note["chunk_text"]}
+""".strip()
+        )
+
+    return "\n\n---\n\n".join(
+        formatted_notes
+    )

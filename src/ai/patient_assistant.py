@@ -1,7 +1,15 @@
 from openai import OpenAI
 
-from ai.patient_context import build_patient_context
-from ai.prompts import SYSTEM_PROMPT, build_patient_prompt
+from ai.patient_context import (
+    build_patient_context,
+)
+from ai.clinical_note_retriever import (
+    search_clinical_notes,
+)
+from ai.prompts import (
+    SYSTEM_PROMPT,
+    build_patient_prompt,
+)
 
 
 client = OpenAI()
@@ -12,17 +20,30 @@ def ask_patient_question(
     question: str,
 ) -> str:
 
-    context = build_patient_context(patient_id)
+    patient_context = (
+        build_patient_context(
+            patient_id
+        )
+    )
 
-    if not context:
+    if not patient_context:
         return (
             f"No patient record was found "
             f"for patient_id {patient_id}."
         )
 
+    clinical_notes = (
+        search_clinical_notes(
+            patient_id=patient_id,
+            question=question,
+            top_k=5,
+        )
+    )
+
     prompt = build_patient_prompt(
-        context,
-        question,
+        patient_context=patient_context,
+        clinical_notes=clinical_notes,
+        question=question,
     )
 
     response = client.responses.create(
@@ -32,16 +53,3 @@ def ask_patient_question(
     )
 
     return response.output_text
-
-
-def main():
-    answer = ask_patient_question(
-        patient_id="187253",
-        question="Is this patient's blood pressure dangerous?",
-    )
-
-    print(answer)
-
-
-if __name__ == "__main__":
-    main()

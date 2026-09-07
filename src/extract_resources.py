@@ -14,6 +14,7 @@ FHIR_RESOURCES = [
     "Condition",
     "Observation",
     "MedicationRequest",
+    "DocumentReference",
 ]
 
 

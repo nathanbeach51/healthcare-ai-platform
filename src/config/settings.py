@@ -10,4 +10,4 @@ DEFAULT_HEADERS = {
     "Content-Type": "application/fhir+json"
 }
 
-DEBUG_LOGGING = False
+DEBUG_LOGGING = True

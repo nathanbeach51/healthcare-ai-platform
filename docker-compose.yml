@@ -22,10 +22,13 @@ services:
 
 
   hapi-postgres:
-    image: postgres:16-alpine
+    image: pgvector/pgvector:pg16
     container_name: hapi-postgres
 
     restart: unless-stopped
+
+    ports:
+      - "5432:5432"
 
     environment:
       POSTGRES_DB: "hapi"
@@ -88,11 +91,12 @@ services:
       AIRFLOW__API_AUTH__JWT_SECRET: "healthcare-ai-local-jwt-secret"
       FHIR_BASE_URL: "http://hapi-fhir:8080/fhir"
       PYTHONPATH: "/opt/airflow/project/src"
+      OPENAI_API_KEY: "${OPENAI_API_KEY}"
+      PGVECTOR_HOST: "hapi-postgres"
       _AIRFLOW_DB_MIGRATE: "true"
       _AIRFLOW_WWW_USER_CREATE: "true"
       _AIRFLOW_WWW_USER_USERNAME: "airflow"
       _AIRFLOW_WWW_USER_PASSWORD: "airflow"
-
 
     command: version
 
@@ -110,14 +114,16 @@ services:
       airflow-postgres:
         condition: service_healthy
 
-
     environment:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: "postgresql+psycopg2://airflow:airflow@airflow-postgres/airflow"
       AIRFLOW__CORE__EXECUTOR: "LocalExecutor"
       AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_USERS: "airflow:admin"
-      PYTHONPATH: "/opt/airflow/project/src"
       AIRFLOW__CORE__EXECUTION_API_SERVER_URL: "http://airflow-api-server:8080/execution/"
       AIRFLOW__API_AUTH__JWT_SECRET: "healthcare-ai-local-jwt-secret"
+      FHIR_BASE_URL: "http://hapi-fhir:8080/fhir"
+      PYTHONPATH: "/opt/airflow/project/src"
+      OPENAI_API_KEY: "${OPENAI_API_KEY}"
+      PGVECTOR_HOST: "hapi-postgres"
 
     volumes:
       - ./dags:/opt/airflow/dags
@@ -125,7 +131,6 @@ services:
       - ./plugins:/opt/airflow/plugins
       - ./src:/opt/airflow/project/src
       - ./data:/opt/airflow/project/data
-
 
     ports:
       - "8081:8080"
@@ -153,6 +158,8 @@ services:
       AIRFLOW__API_AUTH__JWT_SECRET: "healthcare-ai-local-jwt-secret"
       FHIR_BASE_URL: "http://hapi-fhir:8080/fhir"
       PYTHONPATH: "/opt/airflow/project/src"
+      OPENAI_API_KEY: "${OPENAI_API_KEY}"
+      PGVECTOR_HOST: "hapi-postgres"
 
     volumes:
       - ./dags:/opt/airflow/dags
@@ -176,13 +183,16 @@ services:
     depends_on:
       airflow-postgres:
         condition: service_healthy
-    
+
     environment:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: "postgresql+psycopg2://airflow:airflow@airflow-postgres/airflow"
       AIRFLOW__CORE__EXECUTOR: "LocalExecutor"
       AIRFLOW__CORE__EXECUTION_API_SERVER_URL: "http://airflow-api-server:8080/execution/"
+      AIRFLOW__API_AUTH__JWT_SECRET: "healthcare-ai-local-jwt-secret"
       FHIR_BASE_URL: "http://hapi-fhir:8080/fhir"
       PYTHONPATH: "/opt/airflow/project/src"
+      OPENAI_API_KEY: "${OPENAI_API_KEY}"
+      PGVECTOR_HOST: "hapi-postgres"
 
     volumes:
       - ./dags:/opt/airflow/dags
