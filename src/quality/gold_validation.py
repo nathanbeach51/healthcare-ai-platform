@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from pyspark.sql import SparkSession
+
 from processing.spark_session import create_spark_session
 from quality.checks import (
     assert_not_empty,
@@ -43,16 +45,17 @@ PATIENT_UTILIZATION_GOLD_PATH = (
     / "patient_utilization"
 )
 
-def validate_patient_utilization():
-    spark = create_spark_session()
 
+def validate_patient_utilization(
+    spark: SparkSession,
+) -> None:
     utilization_df = (
         spark.read
         .format("delta")
-        .load((str(PATIENT_UTILIZATION_GOLD_PATH)))
+        .load(str(PATIENT_UTILIZATION_GOLD_PATH))
     )
 
-    print("Starting Patient Utilization Gold validation...")
+    print("Validating Patient Utilization Gold...")
 
     assert_not_empty(
         utilization_df,
@@ -71,11 +74,12 @@ def validate_patient_utilization():
         "patient_utilization",
     )
 
-    print("Patient Medications Gold validation passed.")
+    print("Patient Utilization Gold validation passed.")
 
-def validate_patient_medications():
-    spark = create_spark_session()
 
+def validate_patient_medications(
+    spark: SparkSession,
+) -> None:
     patient_medications_df = (
         spark.read
         .format("delta")
@@ -127,9 +131,10 @@ def validate_patient_medications():
 
     print("Patient Medications Gold validation passed.")
 
-def validate_patient_conditions():
-    spark = create_spark_session()
 
+def validate_patient_conditions(
+    spark: SparkSession,
+) -> None:
     patient_condition_df = (
         spark.read
         .format("delta")
@@ -158,9 +163,9 @@ def validate_patient_conditions():
     print("Patient Conditions Gold validation passed.")
 
 
-def validate_patient_latest_vitals():
-    spark = create_spark_session()
-
+def validate_patient_latest_vitals(
+    spark: SparkSession,
+) -> None:
     vitals_df = (
         spark.read
         .format("delta")
@@ -240,11 +245,21 @@ def validate_patient_latest_vitals():
     )
 
 
-def main():
-    validate_patient_latest_vitals()
-    validate_patient_conditions()
-    validate_patient_medications()
-    validate_patient_utilization()
+def main() -> None:
+    spark = create_spark_session(
+        "gold-validation"
+    )
+
+    try:
+        validate_patient_latest_vitals(spark)
+        validate_patient_conditions(spark)
+        validate_patient_medications(spark)
+        validate_patient_utilization(spark)
+
+        print("Gold validation completed successfully.")
+
+    finally:
+        spark.stop()
 
 
 if __name__ == "__main__":
