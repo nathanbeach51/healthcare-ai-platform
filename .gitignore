@@ -36,3 +36,6 @@ data/delta/bronze/*
 !data/delta/bronze/.gitkeep
 
 spark-warehouse/
+
+# Generated performance test datasets
+data/performance/

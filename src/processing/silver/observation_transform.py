@@ -267,6 +267,11 @@ def main() -> None:
 
         bronze_count = bronze.count()
 
+        print(
+            f"Bronze partitions: "
+            f"{bronze.rdd.getNumPartitions()}"
+        )
+
         print("\nObservation Silver")
         print("------------------")
         print(f"New Bronze rows: {bronze_count}")
@@ -296,6 +301,15 @@ def main() -> None:
         silver = add_silver_metadata(
             current
         )
+
+        print(
+            f"Silver partitions: "
+            f"{silver.rdd.getNumPartitions()}"
+        )
+
+        print("\nSilver Physical Plan")
+        print("--------------------")
+        silver.explain("formatted")
 
         validate_observations(
             silver

@@ -416,3 +416,56 @@ GET  /patients/{patient_id}/conditions
 GET  /patients/{patient_id}/medications
 GET  /patients/{patient_id}/utilization
 POST /patients/{patient_id}/ask
+
+## Milestone 19 — Spark & Delta Performance Engineering
+
+**Status:** Complete
+
+Profiled and optimized the Observation processing pipeline using
+scaled synthetic healthcare datasets and Spark execution metrics.
+
+### Completed
+
+- Established performance baselines for the Bronze → Silver Observation
+  pipeline.
+- Created isolated 1M- and 5M-row synthetic Observation datasets for
+  repeatable performance testing without affecting production data or
+  ingestion checkpoints.
+- Analyzed Spark physical plans, stages, tasks, shuffle behavior, and
+  Adaptive Query Execution (AQE) using the Spark UI.
+- Identified window operations, aggregations, pivots, and joins that
+  introduce shuffle boundaries.
+- Evaluated data distribution and found no significant partition skew
+  in the tested Observation workloads.
+- Tested manual repartitioning and rejected it after benchmarking showed
+  approximately 35% slower execution due to the additional shuffle.
+- Reduced repeated lineage computation by persisting the transformed
+  Silver DataFrame, improving the multi-action workload from 20.73s to
+  16.17s (~22%).
+- Compared normal and intentionally fragmented Delta file layouts and
+  demonstrated the distinction between physical Parquet files, Spark
+  input partitions, and shuffle partitions.
+- Demonstrated Parquet predicate pushdown and Delta partition pruning
+  using patient-specific Observation queries.
+- Profiled the Gold Patient Latest Vitals pipeline against 2.7M Silver
+  Observation rows.
+- Confirmed column pruning, predicate pushdown, early window reduction,
+  aggregation shuffles, AQE behavior, and a BroadcastHashJoin selected
+  by Spark.
+- Materialized the scaled Gold pipeline to Delta in approximately 3.2s;
+  the largest observed downstream shuffle was only 29.3 KiB / 525
+  records after early data reduction.
+- Documented performance experiments, accepted/rejected optimizations,
+  benchmark results, and engineering conclusions in
+  `docs/PerformanceEngineering.md`.
+
+### Key Outcome
+
+Established a measurement-driven Spark optimization workflow:
+
+**baseline → inspect → hypothesize → benchmark → accept/reject → document**
+
+The milestone demonstrated that effective Spark performance engineering
+is not simply increasing partitions or adding caching. Optimizations
+were applied only when execution plans and benchmark results supported
+them.
