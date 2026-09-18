@@ -6,7 +6,7 @@ echo "Generating synthetic hospital..."
 
 cd tools/synthea/source
 
-./run_synthea \
+./run_synthea 
   -p 100
 
 echo "Synthea generation complete."

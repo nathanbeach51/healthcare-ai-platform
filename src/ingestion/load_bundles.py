@@ -4,7 +4,7 @@ import json
 import requests
 
 
-FHIR_URL = "http://localhost:8080/fhir"
+from config.settings import FHIR_BASE_URL
 
 FHIR_DIRECTORY = Path(
     "tools/synthea/source/output/fhir"
@@ -20,7 +20,7 @@ def load_bundle(
         bundle = json.load(f)
 
     response = requests.post(
-        FHIR_URL,
+        FHIR_BASE_URL,
         json=bundle,
         headers={
             "Content-Type": "application/fhir+json"

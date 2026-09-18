@@ -4,38 +4,36 @@ __pycache__/
 *.egg-info/
 .venv/
 
-# Environment
+# Local environment / secrets
 .env
+.env.*
+!.env.example
 
 # IDE
+.idea/
 .vscode/
 
 # OS
 .DS_Store
 
-# Spark
+# Spark runtime
 spark-warehouse/
 
-# Generated data
-# Ignore generated/local data
+# Airflow runtime
+logs/
+
+# Generated healthcare data
+storage/
 data/*
 
 # Keep reference data in source control
 !data/reference/
 !data/reference/**
 
-/storage/
+# Generated data formats
 *.parquet
 *.delta
 
-# synthea test data
-tools/synthea/
-
-# Generated Delta tables
-data/delta/bronze/*
-!data/delta/bronze/.gitkeep
-
-spark-warehouse/
-
-# Generated performance test datasets
-data/performance/
+# Synthea source repository
+# Downloaded by scripts/setup-synthea.sh
+tools/synthea/source/

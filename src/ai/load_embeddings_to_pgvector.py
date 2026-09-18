@@ -1,19 +1,18 @@
 from pathlib import Path
-import os
 
 import psycopg
 from pgvector import Vector
 from pgvector.psycopg import register_vector
 from pyspark.sql import functions as F
 
-from processing.spark_session import create_spark_session
-
-import os
-
-PGVECTOR_HOST = os.getenv(
-    "PGVECTOR_HOST",
-    "localhost",
+from config.settings import (
+    PGVECTOR_HOST,
+    PGVECTOR_PORT,
+    PGVECTOR_DATABASE,
+    PGVECTOR_USER,
+    PGVECTOR_PASSWORD,
 )
+from processing.spark_session import create_spark_session
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -29,21 +28,13 @@ EMBEDDING_PATH = (
 PIPELINE_NAME = "clinical_note_pgvector"
 BATCH_SIZE = 500
 
-
-
-PGVECTOR_HOST = os.getenv(
-    "PGVECTOR_HOST",
-    "localhost",
-)
-
-
 def get_connection():
     conn = psycopg.connect(
         host=PGVECTOR_HOST,
-        port=5432,
-        dbname="hapi",
-        user="admin",
-        password="admin",
+        port=PGVECTOR_PORT,
+        dbname=PGVECTOR_DATABASE,
+        user=PGVECTOR_USER,
+        password=PGVECTOR_PASSWORD,
     )
 
     register_vector(conn)

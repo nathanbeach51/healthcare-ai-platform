@@ -4,6 +4,14 @@ import psycopg
 from pgvector import Vector
 from pgvector.psycopg import register_vector
 
+from config.settings import (
+    PGVECTOR_HOST,
+    PGVECTOR_PORT,
+    PGVECTOR_DATABASE,
+    PGVECTOR_USER,
+    PGVECTOR_PASSWORD,
+)
+
 
 EMBEDDING_MODEL = "text-embedding-3-small"
 
@@ -12,11 +20,11 @@ client = OpenAI()
 
 def get_connection():
     conn = psycopg.connect(
-        host="localhost",
-        port=5432,
-        dbname="hapi",
-        user="admin",
-        password="admin",
+        host=PGVECTOR_HOST,
+        port=PGVECTOR_PORT,
+        dbname=PGVECTOR_DATABASE,
+        user=PGVECTOR_USER,
+        password=PGVECTOR_PASSWORD,
     )
 
     register_vector(conn)
