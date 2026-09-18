@@ -30,11 +30,13 @@ TEST_PATIENT_CONTEXT = {
         "source": "gold.patient_conditions",
     },
     "medications": {
-        "medication_request_count": 4,
-        "unique_medication_count": 1,
-        "active_medication_count": 0,
-        "source": "gold.patient_medications",
-    },
+    "medication_request_count": 4,
+    "unique_medication_count": 1,
+    "active_medication_count": 0,
+    "active_medication_names": [],
+    "has_active_medications": False,
+    "source": "gold.patient_medications",
+},
     "utilization": {
         "encounter_count": 20,
         "source": "gold.patient_utilization",
