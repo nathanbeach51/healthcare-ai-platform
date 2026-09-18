@@ -3,3 +3,4 @@ pyspark==3.5.9
 requests==2.34.2
 pgvector
 psycopg[binary]
+python-dotenv
