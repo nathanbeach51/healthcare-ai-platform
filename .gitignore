@@ -20,7 +20,8 @@ __pycache__/
 spark-warehouse/
 
 # Airflow runtime
-logs/
+logs/*
+!logs/.gitkeep
 
 # Generated healthcare data
 storage/
