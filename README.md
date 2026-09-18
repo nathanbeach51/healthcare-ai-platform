@@ -284,7 +284,7 @@ Synthea is downloaded separately during setup and is not stored in this reposito
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/nathanbeach51/healthcare-ai-platform
 cd healthcare-ai-platform
 ```
 
