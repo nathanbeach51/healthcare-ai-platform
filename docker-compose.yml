@@ -100,7 +100,7 @@ services:
       _AIRFLOW_WWW_USER_USERNAME: "${AIRFLOW_ADMIN_USER:-airflow}"
       _AIRFLOW_WWW_USER_PASSWORD: "${AIRFLOW_ADMIN_PASSWORD:-airflow}"
 
-    command: Version
+    command: version
 
 
   airflow-api-server:
