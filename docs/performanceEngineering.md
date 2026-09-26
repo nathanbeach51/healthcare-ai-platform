@@ -118,36 +118,32 @@ Low input partition count alone is not sufficient justification for
 calling repartition(). Partition changes should be based on measured
 execution behavior.
 
-## Persistence Experiment
+### Persistence Benchmark
 
-The production Silver pipeline performs several actions against the
-same transformed DataFrame, including validation counts and the final
-write/merge workflow.
+An initial persistence experiment reduced runtime by approximately 22%.
 
-Without persistence:
+A dedicated repeatable benchmark was later added using the Silver
+Observation workload. The benchmark compares repeated actions against
+the same intermediate DataFrame with and without persistence.
 
-- 20.73 seconds
+Dataset:
+- 2,709,824 Silver Observation rows
+- 3 runs per configuration
+- Median used for comparison
 
-With the transformed Silver DataFrame persisted:
+Results:
 
-- 16.17 seconds
+| Configuration | Median Runtime |
+|----------------|---------------:|
+| Baseline       | 15.39 seconds  |
+| Persisted      | 11.51 seconds  |
 
-Improvement:
+Persistence reduced median runtime by 25.2%.
 
-- 4.56 seconds
-- approximately 22%
-
-Persistence prevented Spark from repeatedly recomputing the expensive
-Bronze → transform → window lineage.
-
-Individual validation checks against the materialized DataFrame were:
-
-- Null patient check: 0.26 seconds
-- Null observation-code check: 0.23 seconds
-- Duplicate-key check: 1.33 seconds
-
-The duplicate check was more expensive because its groupBy operation
-requires redistribution.
+The persisted DataFrame is reused across multiple validation actions
+and a final row count. The benchmark includes the initial cost of
+materializing the persisted DataFrame rather than timing only
+subsequent cached operations.
 
 ## Delta File Layout Experiment
 
